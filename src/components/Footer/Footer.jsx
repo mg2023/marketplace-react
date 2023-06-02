@@ -1,7 +1,7 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-800 text-white py-4">
+    <footer className="bg-gray-800 text-white py-4 p-10">
       <div className="container mx-auto flex justify-between">
         <div className="flex items-center">
           <p className="text-sm">&copy; 2023 Mi Tienda Online</p>

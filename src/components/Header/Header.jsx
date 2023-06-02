@@ -4,7 +4,7 @@ export default function Header() {
     const [navbar, setNavbar] = useState(false);
 
     return (
-        <nav className="w-full bg-purple-500 shadow">
+        <nav className="w-full bg-gray-600 shadow">
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
@@ -57,10 +57,7 @@ export default function Header() {
                     >
                         <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             <li className="text-white hover:text-indigo-200">
-                                <a href="javascript:void(0)">Home</a>
-                            </li>
-                            <li className="text-white hover:text-indigo-200">
-                                <a href="javascript:void(0)">Blog</a>
+                                <a href="/">Home</a>
                             </li>
                             <li className="text-white hover:text-indigo-200">
                                 <a href="javascript:void(0)">About US</a>
@@ -88,16 +85,16 @@ export default function Header() {
                 </div>
                 <div className="hidden space-x-2 md:inline-block">
                     <a
-                        href="javascript:void(0)"
+                        href="/login"
                         className="px-4 py-2 text-white bg-gray-600 rounded-md shadow hover:bg-gray-800"
                     >
-                        Sign in
+                        Login
                     </a>
                     <a
-                        href="javascript:void(0)"
+                        href="/cart"
                         className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                     >
-                        Sign up
+                        Carrito
                     </a>
                 </div>
             </div>
