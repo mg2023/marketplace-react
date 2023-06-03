@@ -11,8 +11,10 @@ const Login = () => {
   };
 
   return (
-    <div className='pt-12  min-h-400px flex-row justify-center items-center'>
-      <h1 className='text-center text-4xl mb-12'>LOGIN</h1>
+    <div className='pt-4  min-h-400px flex-row justify-center items-center'>
+    <h1 className='text-center text-md xl:text-4xl mb-8'>LOGIN</h1>  
+    <h2 className='text-center text-md xl:text-xl'>Únete a nuestra comunidad</h2>
+      <h3 className='text-center text-xs xl:text-md mb-8'>Inicia sesión para acceder a tu cuenta o crea una nueva.</h3>
       <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
         <Input
           label="Email"
@@ -20,7 +22,7 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="example@mail.com"
-          className="mb-4"
+          className=""
         />
         <Input
           label="Password"
@@ -28,14 +30,23 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="********"
-          className="mb-4"
+          className="mb-2"
         />
-        <button
-          type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
-        >
-          Login
-        </button>
+        <div className="flex justify-between">
+          <a
+            href="/"
+            className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded w-[45%]"
+          >
+            Login
+          </a>
+          <a
+            href="/register"
+            className="bg-green-500 hover:bg-green-700 text-center text-white font-bold py-2 px-4 rounded w-[45%]"
+          >
+            Registrar
+          </a>
+        </div>
+
       </form>
       <div className='flex justify-center mt-14'>
         <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center">

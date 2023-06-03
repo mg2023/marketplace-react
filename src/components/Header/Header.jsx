@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
     const [navbar, setNavbar] = useState(false);
@@ -8,9 +9,9 @@ export default function Header() {
             <div className="justify-between px-4 mx-auto lg:max-w-7xl md:items-center md:flex md:px-8">
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
-                        <a href="/">
+                        <NavLink to="/">
                             <h2 className="text-2xl font-bold text-white">LOGO</h2>
-                        </a>
+                        </NavLink>
                         <div className="md:hidden">
                             <button
                                 className="p-2 text-gray-700 rounded-md outline-none focus:border-gray-400 focus:border"
@@ -56,29 +57,29 @@ export default function Header() {
                     >
                         <ul className="items-center justify-center text-center space-y-8 md:flex md:space-x-6 md:space-y-0">
                             <li className="text-white hover:text-indigo-200">
-                                <a href="/">Inicio</a>
+                                <NavLink to="/">Inicio</NavLink>
                             </li>
                             <li className="text-white hover:text-indigo-200">
-                                <a href="javascript:void(0)">Nosotros</a>
+                                <NavLink to="javascript:void(0)">Nosotros</NavLink>
                             </li>
                             <li className="text-white hover:text-indigo-200">
-                                <a href="javascript:void(0)">Contacto</a>
+                                <NavLink to="javascript:void(0)">Contacto</NavLink>
                             </li>
                             <li className="text-white hover:text-indigo-200">
-                                <a
-                                    href="/login"
+                                <NavLink
+                                    to="/login"
                                     className="px-4 py-2 text-white bg-gray-800 rounded-md shadow hover:bg-gray-800"
                                 >
                                     Login
-                                </a>
+                                </NavLink>
                             </li>
                             <li className="text-white hover:text-indigo-200">
-                                <a
-                                    href="/cart"
+                                <NavLink
+                                    to="/cart"
                                     className="px-4 py-2 text-gray-800 bg-white rounded-md shadow hover:bg-gray-100"
                                 >
                                     Carrito
-                                </a>
+                                </NavLink>
                             </li>
                         </ul>
 
