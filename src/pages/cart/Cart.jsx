@@ -6,24 +6,35 @@ export default function Cart({ cartItems, removeFromCart }) {
   return (
     <div className="container mx-auto p-4">
       <h2 className="text-2xl font-bold mb-4">Carrito de Compra</h2>
-      <div className="grid grid-cols-4 gap-4">
-        <div className="col-span-2 font-bold">Producto</div>
-        <div className="font-bold">Precio</div>
-        <div className="font-bold">Cantidad</div>
-        <div></div>
+      <div className="overflow-x-auto">
+        <table className="min-w-full bg-white border border-gray-300">
+          <thead>
+            <tr className="bg-gray-100">
+              <th className="py-2 px-4 border-b">Producto</th>
+              <th className="py-2 px-4 border-b">Precio</th>
+              <th className="py-2 px-4 border-b">Cantidad</th>
+              <th className="py-2 px-4 border-b"></th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item) => (
+              <tr key={item.id} className="border-b">
+                <td className="py-2 px-4">{item.name}</td>
+                <td className="py-2 px-4">${item.price}</td>
+                <td className="py-2 px-4">{item.quantity}</td>
+                <td className="py-2 px-4">
+                  <button
+                    onClick={() => removeFromCart(item.id)}
+                    className="text-red-500 font-bold"
+                  >
+                    Eliminar
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
-      {cartItems.map((item) => (
-        <div key={item.id} className="grid grid-cols-4 gap-4 mt-2">
-          <div className="col-span-2">{item.name}</div>
-          <div>${item.price}</div>
-          <div>{item.quantity}</div>
-          <div>
-            <button onClick={() => removeFromCart(item.id)} className="text-red-500 font-bold">
-              Eliminar
-            </button>
-          </div>
-        </div>
-      ))}
       <div className="mt-4 font-bold">Total: ${getTotalPrice()}</div>
     </div>
   );
