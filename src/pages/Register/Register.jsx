@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import Input from '../../components/Input/Input';
 
 const Register = () => {
@@ -19,10 +20,11 @@ const Register = () => {
       <h2 className='text-center text-md xl:text-xl'>Únete a nuestra comunidad</h2>
       <h3 className='text-center text-xs xl:text-md mb-8'>
         Crea una cuenta nueva o inicia sesión para
-        <a
-          href="/register"
+        <NavLink
+          to="/login"
           className='underline hover:font-bold'
-          > acceder</a>.
+          > acceder.
+          </NavLink>
       </h3>
       <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
       <Input
@@ -67,18 +69,18 @@ const Register = () => {
     />
     
         <div className="flex justify-between">
-          <a
-            href="javascript:void(0)"
+          <NavLink
+            to="javascript:void(0)"
             className="bg-green-500 hover:bg-green-700 text-center text-white font-bold py-2 px-4 rounded w-[45%]"
           >
             Registrar
-          </a>
-          <a
-            href="/login"
+          </NavLink>
+          <NavLink
+            to="/login"
             className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded w-[45%]"
           >
             Login
-          </a>
+          </NavLink>
         </div>
 
       </form>

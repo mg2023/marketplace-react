@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import Input from '../../components/Input/Input';
 
 const Login = () => {
@@ -14,7 +15,13 @@ const Login = () => {
     <div className='pt-4  min-h-400px flex-row justify-center items-center'>
     <h1 className='text-center text-md xl:text-4xl mb-8'>LOGIN</h1>  
     <h2 className='text-center text-md xl:text-xl'>Únete a nuestra comunidad</h2>
-      <h3 className='text-center text-xs xl:text-md mb-8'>Inicia sesión para acceder a tu cuenta o crea una nueva.</h3>
+      <h3 className='text-center text-xs xl:text-md mb-8'>Inicia sesión para acceder a tu cuenta o 
+      <NavLink
+          to="/register"
+          className='underline hover:font-bold'
+          > crea una nueva.
+          </NavLink>
+      </h3>
       <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto">
         <Input
           label="Email"
@@ -33,18 +40,18 @@ const Login = () => {
           className="mb-2"
         />
         <div className="flex justify-between">
-          <a
-            href="/"
+          <NavLink
+            to="/"
             className="bg-blue-500 hover:bg-blue-700 text-center text-white font-bold py-2 px-4 rounded w-[45%]"
           >
             Login
-          </a>
-          <a
-            href="/register"
+          </NavLink>
+          <NavLink
+            to="/register"
             className="bg-green-500 hover:bg-green-700 text-center text-white font-bold py-2 px-4 rounded w-[45%]"
           >
             Registrar
-          </a>
+          </NavLink>
         </div>
 
       </form>
