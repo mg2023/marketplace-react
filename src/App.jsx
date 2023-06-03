@@ -31,7 +31,7 @@ export default function App() {
     <ToastContainer />
 
       <BrowserRouter>
-        <Header />
+        <Header cartItemCount={cartItems.length} />
         <div className="grow">
           <Routes>
             <Route path="/" element={<Home addToCart={addToCart} />} />

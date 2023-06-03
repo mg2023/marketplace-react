@@ -14,18 +14,35 @@ export default function Grid({ products, addToCart }) {
           <img src={product.image} alt={product.name} className="w-full h-40 object-cover mb-4" />
           <h3 className="text-lg font-bold">{product.name}</h3>
           <p className="text-gray-600">${product.price}</p>
+
+
+
+
+          
+          
+
+
+
+
+
+        <div className="flex justify-between">
           <button
             onClick={() => addToCart(product)}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mt-4 w-[45%]"
           >
             Agregar al carrito
           </button>
           <button
             onClick={() => handleProductClick(product.id)}
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mt-4 w-[45%]"
           >
             Ver detalle
           </button>
+          </div>
+
+
+
+
         </div>
       ))}
     </div>
