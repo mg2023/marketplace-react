@@ -1,5 +1,3 @@
-import { useParams, NavLink } from 'react-router-dom';
-
 export default function Cart({ cartItems, removeFromCart }) {
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);

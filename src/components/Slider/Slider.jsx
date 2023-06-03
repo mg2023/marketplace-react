@@ -20,7 +20,7 @@ export default function Slider({ urls }) {
         }}
         navigation={true}
         modules={[Autoplay, Pagination, Navigation]}
-        className="my-swiper"
+        className="my-swiper z-[-1]"
       >
         {urls.map((url, index) => (
           <SwiperSlide key={index}>

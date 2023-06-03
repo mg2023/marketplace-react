@@ -1,6 +1,7 @@
 import { useParams, NavLink } from 'react-router-dom';
 
-export default function ProductDetail({ products, addToCart }) {
+
+export default function ProductDetail({ products, addToCart, removeFromCart }) {
   const { id } = useParams();
 
   const product = products.find((product) => product.id === parseInt(id));
@@ -11,7 +12,6 @@ export default function ProductDetail({ products, addToCart }) {
 
   const handleAddToCart = () => {
     addToCart(product);
-    alert('Producto agregado al carrito');
   };
 
   return (
