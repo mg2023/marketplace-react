@@ -1,10 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 
-export default function Grid({ products }) {
+export default function Grid({ products, addToCart }) {
   const navigate = useNavigate();
 
   const handleProductClick = (productId) => {
     navigate(`/product/${productId}`);
+  };
+
+  const handleAddToCart = (product) => {
+    addToCart(product);
+    alert('Producto agregado al carrito');
   };
 
   return (
@@ -19,6 +24,12 @@ export default function Grid({ products }) {
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
           >
             Ver detalle
+          </button>
+          <button
+            onClick={() => handleAddToCart(product)}
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
+          >
+            Agregar al carrito
           </button>
         </div>
       ))}

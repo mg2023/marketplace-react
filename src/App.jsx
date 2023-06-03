@@ -1,6 +1,7 @@
+// App.js
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Home from './pages/home/Home';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -13,23 +14,8 @@ import { products } from "./data/Data"
 export default function App() {
   const [cartItems, setCartItems] = useState([]);
 
-  useEffect(() => {
-    const savedCartItems = localStorage.getItem('cartItems');
-    if (savedCartItems) {
-      setCartItems(JSON.parse(savedCartItems));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
-  }, [cartItems]);
-
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
-  };
-
-  const removeFromCart = (productId) => {
-    setCartItems(cartItems.filter(item => item.id !== productId));
   };
 
   return (
@@ -38,11 +24,11 @@ export default function App() {
         <Header />
         <div className="grow p-4">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home addToCart={addToCart} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/product/:id" element={<ProductDetail products={products} addToCart={addToCart} />} />
-            <Route path="/cart" element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />} />
+            <Route path="/cart" element={<Cart cartItems={cartItems} />} />
           </Routes>
         </div>
         <Footer className="mt-auto" />
