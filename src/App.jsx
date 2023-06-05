@@ -28,7 +28,7 @@ export default function App() {
 
   return (
     <div className="flex flex-col min-h-screen">
-    <ToastContainer />
+      <ToastContainer />
 
       <BrowserRouter>
         <Header cartItemCount={cartItems.length} />

@@ -44,6 +44,79 @@ const products = [
         price: 12.99,
         image: 'https://picsum.photos/206/300',
     },
+    {
+        id: 7,
+        name: 'Producto 7',
+        price: 10.99,
+        image: 'https://picsum.photos/211/300',
+    },
+    {
+        id: 8,
+        name: 'Producto 8',
+        price: 15.99,
+        image: 'https://picsum.photos/212/300',
+    },
+    {
+        id: 9,
+        name: 'Producto 9',
+        price: 12.99,
+        image: 'https://picsum.photos/213/300',
+    },
+    {
+        id: 10,
+        name: 'Producto 10',
+        price: 12.99,
+        image: 'https://picsum.photos/214/300',
+    },
+    {
+        id: 11,
+        name: 'Producto 11',
+        price: 12.99,
+        image: 'https://picsum.photos/215/300',
+    },
+    {
+        id: 12,
+        name: 'Producto 12',
+        price: 12.99,
+        image: 'https://picsum.photos/206/300',
+    },
+
+    {
+        id: 13,
+        name: 'Producto 13',
+        price: 10.99,
+        image: 'https://picsum.photos/211/300',
+    },
+    {
+        id: 14,
+        name: 'Producto 14',
+        price: 15.99,
+        image: 'https://picsum.photos/212/300',
+    },
+    {
+        id: 15,
+        name: 'Producto 15',
+        price: 12.99,
+        image: 'https://picsum.photos/213/300',
+    },
+    {
+        id: 16,
+        name: 'Producto 16',
+        price: 12.99,
+        image: 'https://picsum.photos/214/300',
+    },
+    {
+        id: 17,
+        name: 'Producto 17',
+        price: 12.99,
+        image: 'https://picsum.photos/215/300',
+    },
+    {
+        id: 18,
+        name: 'Producto 18',
+        price: 12.99,
+        image: 'https://picsum.photos/206/300',
+    },
 ];
 const destacados = [
     {
