@@ -11,11 +11,11 @@ import ProductDetail from './pages/productDetail/ProductDetail';
 import { products } from "./data/Data"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import CarritoContext from "./context/CarritoContext";
 
 
 export default function App() {
-  const [cartItems, setCartItems] = useState([]);
-
+  
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
     toast.success('Producto agregado al carrito');
@@ -25,9 +25,16 @@ export default function App() {
     setCartItems(cartItems.filter(item => item.id !== productId));
     toast.error('Producto eliminado del carrito');
   };
+  
+  const [cartItems, setCartItems] = useState([]);
+
+  const sharedCarritoContextState = { cartItems, setCartItems, addToCart, removeFromCart };
+
+ 
 
   return (
     <div className="flex flex-col min-h-screen">
+    <CarritoContext.Provider value={sharedCarritoContextState}>
       <ToastContainer />
 
       <BrowserRouter>
@@ -37,15 +44,16 @@ export default function App() {
             <Route path="/" element={<Home addToCart={addToCart} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/product/:id" element={<ProductDetail products={products} addToCart={addToCart} />} />
+            <Route path="/product/:id" element={<ProductDetail products={products} />} />
             <Route
               path="/cart"
-              element={<Cart cartItems={cartItems} removeFromCart={removeFromCart} />}
+              element={<Cart />}
             />
           </Routes>
         </div>
         <Footer className="mt-auto" />
       </BrowserRouter>
+         </CarritoContext.Provider>  
     </div>
   );
 }

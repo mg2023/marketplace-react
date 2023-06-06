@@ -1,4 +1,9 @@
-export default function Cart({ cartItems, removeFromCart }) {
+import { useContext } from 'react';
+import CarritoContext from "../../context/CarritoContext";
+
+export default function Cart() {
+  const { cartItems, removeFromCart } = useContext(CarritoContext);
+
   const getTotalPrice = () => {
     return cartItems.reduce((total, item) => total + item.price, 0);
   };
