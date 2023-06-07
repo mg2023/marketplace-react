@@ -5,7 +5,7 @@ const Team = () => {
       <h1 className="text-center text-md xl:text-4xl mb-8">NOSOTROS</h1>
       <div className="flex justify-center">
         <div className="w-1/2 mx-auto">
-          <img src="https://via.placeholder.com/500x300/FF0000/FFFFFF" alt="Imagen 1" className="mb-4" />
+          <img src="https://via.placeholder.com/500x300/" alt="Imagen 1" className="mb-4" />
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer ullamcorper fringilla arcu,
             quis posuere neque ullamcorper id. Suspendisse vel consequat nisl. Nullam vel fringilla tellus.
@@ -18,17 +18,17 @@ const Team = () => {
       <div className="flex justify-center mt-8">
         <div className="grid grid-cols-3 gap-4">
           <div className="text-center">
-            <img src="https://via.placeholder.com/150/0000FF/FFFFFF" alt="Miembro del equipo 1" className="mx-auto mb-4 rounded-full w-32" />
+            <img src="https://via.placeholder.com/150/" alt="Miembro del equipo 1" className="mx-auto mb-4 rounded-full w-32" />
             <h3 className="text-lg font-semibold">Miembro del Equipo 1</h3>
             <p className="text-sm text-gray-500">Cargo del equipo 1</p>
           </div>
           <div className="text-center">
-            <img src="https://via.placeholder.com/150/00FF00/FFFFFF" alt="Miembro del equipo 2" className="mx-auto mb-4 rounded-full w-32" />
+            <img src="https://via.placeholder.com/150/" alt="Miembro del equipo 2" className="mx-auto mb-4 rounded-full w-32" />
             <h3 className="text-lg font-semibold">Miembro del Equipo 2</h3>
             <p className="text-sm text-gray-500">Cargo del equipo 2</p>
           </div>
           <div className="text-center">
-            <img src="https://via.placeholder.com/150/FF0000/FFFFFF" alt="Miembro del equipo 3" className="mx-auto mb-4 rounded-full w-32" />
+            <img src="https://via.placeholder.com/150/" alt="Miembro del equipo 3" className="mx-auto mb-4 rounded-full w-32" />
             <h3 className="text-lg font-semibold">Miembro del Equipo 3</h3>
             <p className="text-sm text-gray-500">Cargo del equipo 3</p>
           </div>

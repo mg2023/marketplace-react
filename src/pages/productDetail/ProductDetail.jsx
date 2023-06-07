@@ -23,7 +23,7 @@ export default function ProductDetail({ products }) {
         <div className="lg:w-4/5 mx-auto flex flex-wrap">
           <img
             alt="ecommerce"
-            className="lg:w-1/2 w-full object-cover object-center rounded border border-gray-200"
+            className="lg:w-1/2 w-full max-h-72 object-contain object-center rounded border border-gray-200"
             src={product.image}
           />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
@@ -70,9 +70,6 @@ export default function ProductDetail({ products }) {
               >
                 Ir al carrito
               </NavLink>
-              <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
-                {/* Icono */}
-              </button>
             </div>
           </div>
         </div>
