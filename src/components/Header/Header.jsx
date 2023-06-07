@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 export default function Header({ cartItemCount }) {
   const [navbar, setNavbar] = useState(false);
@@ -95,3 +96,7 @@ export default function Header({ cartItemCount }) {
     </nav>
   );
 }
+
+Header.propTypes = {
+  cartItemCount: PropTypes.number.isRequired,
+};

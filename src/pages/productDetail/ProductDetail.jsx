@@ -1,6 +1,7 @@
 import { useParams, NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import CarritoContext from "../../context/CarritoContext";
+import PropTypes from 'prop-types';
 
 export default function ProductDetail({ products }) {
   const { addToCart } = useContext(CarritoContext);
@@ -77,3 +78,17 @@ export default function ProductDetail({ products }) {
     </section>
   );
 }
+
+
+ProductDetail.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      image: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+};
