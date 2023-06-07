@@ -12,6 +12,8 @@ import { products } from "./data/Data"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CarritoContext from "./context/CarritoContext";
+import Contact from './pages/contact/Contact';
+import Team from './pages/team/Team';
 
 
 export default function App() {
@@ -43,7 +45,9 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home addToCart={addToCart} />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/team" element={<Team />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/product/:id" element={<ProductDetail products={products} />} />
             <Route
               path="/cart"

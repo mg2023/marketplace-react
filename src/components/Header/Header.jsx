@@ -62,10 +62,10 @@ export default function Header({ cartItemCount }) {
                 <NavLink to="/">Inicio</NavLink>
               </li>
               <li className="text-white hover:text-indigo-200">
-                <NavLink to="javascript:void(0)">Nosotros</NavLink>
+                <NavLink to="/team">Nosotros</NavLink>
               </li>
               <li className="text-white hover:text-indigo-200">
-                <NavLink to="javascript:void(0)">Contacto</NavLink>
+                <NavLink to="/contact">Contacto</NavLink>
               </li>
               <li className="text-white hover:text-indigo-200">
                 <NavLink
