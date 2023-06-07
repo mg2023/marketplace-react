@@ -1,15 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 export default function Grid({ products, addToCart, showFilter }) {
   const [filter, setFilter] = useState('');
-  const navigate = useNavigate();
 
-  const handleProductClick = (productId) => {
-    navigate(`/product/${productId}`);
-  };
-
-  const handleFilterChange = (event) => {
+   const handleFilterChange = (event) => {
     setFilter(event.target.value);
   };
 
@@ -31,26 +28,64 @@ export default function Grid({ products, addToCart, showFilter }) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 p-10">
+      <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-4 p-4" style={{ gridAutoFlow: 'row' }}>
         {filteredProducts.map((product) => (
-          <div key={product.id} className="bg-white rounded-lg shadow p-4">
-            <img src={product.image} alt={product.name} className="w-full h-40 object-cover mb-4" />
-            <h3 className="text-lg font-bold">{product.name}</h3>
-            <p className="text-gray-600">${product.price}</p>
+          <div key={product.id} className="max-w-4xl mx-auto">
+            <div className="bg-white shadow-md rounded-lg max-w-">
+            <Link to={`/product/${product.id}`}>
+            <img
+              className="rounded-t-lg p-8"
+              src={product.image}
+              alt={product.name}
+            />
+          </Link>
+              <div className="px-5 pb-5 ">
+              <Link to={`/product/${product.id}`}>
+              <h3 className="text-gray-900 font-semibold text-xl tracking-tight mb-2">
+                {product.name}
+              </h3>
+            </Link>
+                <div>
+                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1.5 rounded">
+                    {product.category}
+                  </span>
+                </div>
+                <div className="flex items-center mt-2.5 mb-5">
+                {product.description}
+                  
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-md xs:text-md sm:text-2xl md:text-2xl lg:text-3xl font-bold text-gray-900 ">
+                    ${product.price}
+                  </span>
+                  <button
+                    onClick={() => addToCart(product)}
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center "
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shopping-cart-plus" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
+                      <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                      <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                      <path d="M17 17h-11v-14h-2" />
+                      <path d="M6 5l6 .429m7.138 6.573l-.143 1h-13" />
+                      <path d="M15 6h6m-3 -3v6" />
+                    </svg>
+                  </button>
+                </div>
+                
+                <Link to={`/product/${product.id}`}
+  className="text-white text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center w-full mt-4 flex items-center">
+  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-file-info mr-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M14 3v4a1 1 0 0 0 1 1h4" />
+  <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
+  <path d="M11 14h1v4h1" />
+  <path d="M12 11h.01" />
+</svg>
+  <span className="ml-2 text-center">Ver Detalle</span>
+  </Link>
 
-            <div className="flex justify-between">
-              <button
-                onClick={() => addToCart(product)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mt-4 w-[45%]"
-              >
-                Agregar al carrito
-              </button>
-              <button
-                onClick={() => handleProductClick(product.id)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-2 rounded mt-4 w-[45%]"
-              >
-                Ver detalle
-              </button>
+              </div>
             </div>
           </div>
         ))}
