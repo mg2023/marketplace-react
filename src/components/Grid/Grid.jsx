@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 
 export default function Grid({ products, addToCart, showFilter }) {
@@ -59,7 +60,7 @@ export default function Grid({ products, addToCart, showFilter }) {
                   </span>
                   <button
                     onClick={() => addToCart(product)}
-                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center "
+                    className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 text-center "
                   >
                     <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-shopping-cart-plus" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
                       <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -73,7 +74,7 @@ export default function Grid({ products, addToCart, showFilter }) {
                 </div>
                 
                 <Link to={`/product/${product.id}`}
-  className="text-white text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-2 py-2 text-center w-full mt-4 flex items-center">
+  className="text-white text-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm p-2 w-full mt-4 flex items-center">
   <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-file-info mr-2" width="24" height="24" viewBox="0 0 24 24" strokeWidth="1.5" stroke="#ffffff" fill="none" strokeLinecap="round" strokeLinejoin="round">
   <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
   <path d="M14 3v4a1 1 0 0 0 1 1h4" />
@@ -92,3 +93,18 @@ export default function Grid({ products, addToCart, showFilter }) {
     </div>
   );
 }
+
+Grid.propTypes = {
+  products: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      image: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      category: PropTypes.string.isRequired,
+      description: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })
+  ).isRequired,
+  addToCart: PropTypes.func.isRequired,
+  showFilter: PropTypes.bool.isRequired,
+};
