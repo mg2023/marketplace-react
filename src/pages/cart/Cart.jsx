@@ -19,7 +19,7 @@ export default function Cart() {
         <div className="rounded-lg md:w-2/3">
           {cartItems.map((item) => (
             <div key={item.id} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-            <img src={item.image} alt="product-image" className="w-16 h-16 rounded-full" />
+            <img src={item.image} alt="product-image" className="w-auto h-32 " />
             <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div className="mt-5 sm:mt-0">
                   <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
