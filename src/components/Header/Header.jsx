@@ -89,6 +89,14 @@ export default function Header({ cartItemCount }) {
                   )}
                 </NavLink>
               </li>
+              <li className="text-white hover:text-indigo-200">
+                <NavLink
+                  to="/dashboard"
+                  className="px-4 py-2 text-white bg-gray-800 rounded-md shadow hover:bg-gray-800"
+                >
+                dashboard
+                </NavLink>
+              </li>
             </ul>
           </div>
         </div>
