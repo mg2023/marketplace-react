@@ -8,9 +8,7 @@ export default function Cart() {
     return cartItems.reduce((total, item) => total + item.price, 0).toLocaleString(undefined, { minimumFractionDigits: 2 });
   };
 
-  
   const totalPrice = parseFloat(getTotalPrice().replace(/[^0-9.-]+/g,"")) + 4900;
-  
 
   return (
     <div className="h-screen bg-gray-100 pt-20">
@@ -19,15 +17,18 @@ export default function Cart() {
         <div className="rounded-lg md:w-2/3">
           {cartItems.map((item) => (
             <div key={item.id} className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
-            <img src={item.image} alt="product-image" className="w-auto h-32 " />
-            <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
+              <img src={item.url_img} alt="product-image" className="w-auto h-32 " />
+              <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div className="mt-5 sm:mt-0">
-                  <h2 className="text-lg font-bold text-gray-900">{item.name}</h2>
+                  <h2 className="text-lg font-bold text-gray-900">{item.product_name}</h2>
                   <div>
-                <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1.5 rounded">
-                    {item.category}
-                  </span>
-                </div>
+                    <span className="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-1.5 rounded">
+                      {item.category}
+                    </span>
+                  </div>
+                  <div>
+                  <div className="flex items-center mt-2.5 mb-5">{item.descrip}</div>
+                  </div>
                 </div>
                 <div className="mt-4 flex justify-between sm:space-y-6 sm:mt-0 sm:block sm:space-x-6">
                   <div className="flex items-center border-gray-100">

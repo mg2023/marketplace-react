@@ -2,9 +2,16 @@ import Grid from '../../components/Grid/Grid';
 import Slider from '../../components/Slider/Slider';
 import PropTypes from 'prop-types';
 import './Home.css'
-import { imageUrls, imageAds, products, destacados, nuevosProductos } from '../../data/Data';
+import { imageUrls, imageAds } from '../../data/Data';
 
-export default function Home({ addToCart, removeFromCart }) {
+export default function Home({ addToCart, removeFromCart, products }) {
+
+  // Filtrar los nuevos productos
+  const nuevosProductos = products.filter(product => product.is_new);
+
+  // Filtrar los nuevos productos
+  const destacados = products.filter(product => product.is_special_offer);
+
   return (
     <div>
       <Slider urls={imageUrls} />
@@ -23,4 +30,5 @@ export default function Home({ addToCart, removeFromCart }) {
 Home.propTypes = {
   addToCart: PropTypes.func.isRequired,
   removeFromCart: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired, // Agrega la prop `products` al tipo de PropTypes
 };

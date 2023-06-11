@@ -8,6 +8,7 @@ import {
   RiMenu3Fill,
   RiCloseLine
 } from "react-icons/ri";
+import Componente1 from "../../components/Dashboard/Componente1";
 
 function Dashboard() {
   const [showMenu, setShowMenu] = useState(false);
@@ -24,7 +25,7 @@ function Dashboard() {
   const renderContent = () => {
     switch (activeButton) {
       case "dashboard":
-        return <DashboardContent />;
+        return <Componente1 />;
       case "classes":
         return <ClassesContent />;
       case "resources":
@@ -38,10 +39,7 @@ function Dashboard() {
     }
   };
 
-  const DashboardContent = () => {
-    // Contenido del panel de control
-    return <h1>Dashboard Content</h1>;
-  };
+  
 
   const ClassesContent = () => {
     // Contenido de las clases

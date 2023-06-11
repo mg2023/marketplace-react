@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 export default function Header({ cartItemCount }) {
   const [navbar, setNavbar] = useState(false);
-  console.log(cartItemCount);
+ 
 
   return (
     <nav className="w-full sticky top-0 bg-gray-600 shadow z-900">

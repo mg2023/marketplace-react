@@ -17,7 +17,6 @@ export default function ProductDetail({ products }) {
   const handleAddToCart = () => {
     addToCart(product);
   };
-
   return (
     <section className="text-gray-700 body-font overflow-hidden bg-white">
       <div className="container px-5 py-24 mx-auto">
@@ -25,33 +24,17 @@ export default function ProductDetail({ products }) {
           <img
             alt="ecommerce"
             className="lg:w-1/2 w-full max-h-72 object-contain object-center rounded border border-gray-200"
-            src={product.image}
+            src={product.url_img}
           />
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
             <h2 className="text-sm title-font text-gray-500 tracking-widest">
               {product.category}
             </h2>
             <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-              {product.name}
+              {product.product_name}
             </h1>
-            <div className="flex mb-4">
-              <span className="flex items-center">
-                <svg
-                  fill="currentColor"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  className="w-4 h-4 text-red-500"
-                  viewBox="0 0 24 24"
-                >
-                  {/* Iconos de estrellas */}
-                </svg>
-                {/* Otras estrellas */}
-                <span className="text-gray-600 ml-3">4 Reviews</span>
-              </span>
-            </div>
-            <p className="leading-relaxed">{product.description}</p>
+            
+            <p className="leading-relaxed">{product.descrip}</p>
             <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
               {/* Opciones de color y tamaño */}
             </div>
@@ -84,11 +67,19 @@ ProductDetail.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      image: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      description: PropTypes.string.isRequired,
+      product_name: PropTypes.string.isRequired,
+      descrip: PropTypes.string.isRequired,
+      cost: PropTypes.number.isRequired,
       price: PropTypes.number.isRequired,
+      stock_quantity: PropTypes.number.isRequired,
+      url_img: PropTypes.string.isRequired,
+      stars_quantity: PropTypes.number.isRequired,
+      category: PropTypes.string.isRequired,
+      is_new: PropTypes.bool.isRequired,
+      is_special_offer: PropTypes.bool.isRequired,
+      created_at: PropTypes.string.isRequired,
+      modified_at: PropTypes.string,
+      deleted_at: PropTypes.string,
     })
   ).isRequired,
 };
