@@ -21,7 +21,7 @@ export default function App() {
   const [products, setProducts] = useState([]); // Agrega el estado `products`
 
   useEffect(() => {
-    fetch('http://143.198.191.158:3000/products')
+    fetch('https://market-express-git-main-mg2024.vercel.app/products')
       .then(response => response.json())
       .then(data => {
         setProducts(data); // Suponiendo que los datos de la API son un array de productos
@@ -32,6 +32,7 @@ export default function App() {
       });
   }, []);
 
+  
   
   const addToCart = (product) => {
     setCartItems([...cartItems, product]);
