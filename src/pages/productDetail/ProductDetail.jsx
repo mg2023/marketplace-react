@@ -1,10 +1,10 @@
-import { useParams, NavLink } from 'react-router-dom';
-import { useContext } from 'react';
-import CarritoContext from "../../context/CarritoContext";
-import PropTypes from 'prop-types';
+import { useParams, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import Context from "../../context/Context";
+import PropTypes from "prop-types";
 
 export default function ProductDetail({ products }) {
-  const { addToCart } = useContext(CarritoContext);
+  const { addToCart } = useContext(Context);
 
   const { id } = useParams();
 
@@ -18,39 +18,39 @@ export default function ProductDetail({ products }) {
     addToCart(product);
   };
   return (
-    <section className="text-gray-700 body-font overflow-hidden bg-white">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="lg:w-4/5 mx-auto flex flex-wrap">
+    <section className="body-font overflow-hidden bg-white text-gray-700">
+      <div className="container mx-auto px-5 py-24">
+        <div className="mx-auto flex flex-wrap lg:w-4/5">
           <img
             alt="ecommerce"
-            className="lg:w-1/2 w-full max-h-72 object-contain object-center rounded border border-gray-200"
+            className="max-h-72 w-full rounded border border-gray-200 object-contain object-center lg:w-1/2"
             src={product.url_img}
           />
-          <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-            <h2 className="text-sm title-font text-gray-500 tracking-widest">
+          <div className="mt-6 w-full lg:mt-0 lg:w-1/2 lg:py-6 lg:pl-10">
+            <h2 className="title-font text-sm tracking-widest text-gray-500">
               {product.category}
             </h2>
-            <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
+            <h1 className="title-font mb-1 text-3xl font-medium text-gray-900">
               {product.product_name}
             </h1>
-            
+
             <p className="leading-relaxed">{product.descrip}</p>
-            <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+            <div className="mb-5 mt-6 flex items-center border-b-2 border-gray-200 pb-5">
               {/* Opciones de color y tamaño */}
             </div>
             <div className="flex">
-              <span className="title-font font-medium text-2xl text-gray-900">
+              <span className="title-font text-2xl font-medium text-gray-900">
                 ${product.price}
               </span>
               <button
                 onClick={handleAddToCart}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
+                className="ml-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
               >
                 Agregar al carrito
               </button>
               <NavLink
                 to="/cart"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4"
+                className="ml-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
               >
                 Ir al carrito
               </NavLink>
@@ -61,7 +61,6 @@ export default function ProductDetail({ products }) {
     </section>
   );
 }
-
 
 ProductDetail.propTypes = {
   products: PropTypes.arrayOf(

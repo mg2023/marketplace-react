@@ -6,9 +6,9 @@ import {
   RiCalendar2Line,
   RiChat1Line,
   RiMenu3Fill,
-  RiCloseLine
+  RiCloseLine,
 } from "react-icons/ri";
-import Componente1 from "../../components/Dashboard/Componente1";
+import Products from "../../components/Dashboard/Products";
 
 function Dashboard() {
   const [showMenu, setShowMenu] = useState(false);
@@ -25,7 +25,7 @@ function Dashboard() {
   const renderContent = () => {
     switch (activeButton) {
       case "dashboard":
-        return <Componente1 />;
+        return <Products />;
       case "classes":
         return <ClassesContent />;
       case "resources":
@@ -38,8 +38,6 @@ function Dashboard() {
         return null;
     }
   };
-
-  
 
   const ClassesContent = () => {
     // Contenido de las clases
@@ -65,7 +63,7 @@ function Dashboard() {
     <div className="min-h-[50vh]">
       {/* Sidebar */}
       <div
-        className={`fixed top-13 w-3/4 xl:left-0 md:w-96 h-auto bg-gray-100 p-8 flex flex-col justify-between z-50 transition-all ${
+        className={`top-13 fixed z-50 flex h-auto w-3/4 flex-col justify-between bg-gray-100 p-8 transition-all md:w-96 xl:left-0 ${
           showMenu ? "left-0" : "-left-full"
         } `}
       >
@@ -74,18 +72,18 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 hover:bg-gray-200 transition-colors py-2 px-4 rounded-lg ${
+                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "dashboard" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("dashboard")}
               >
-                <RiHome6Line /> Dashboard
+                <RiHome6Line /> Productos
               </a>
             </li>
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 hover:bg-gray-200 transition-colors py-2 px-4 rounded-lg ${
+                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "classes" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("classes")}
@@ -96,7 +94,7 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 hover:bg-gray-200 transition-colors py-2 px-4 rounded-lg ${
+                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "resources" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("resources")}
@@ -107,7 +105,7 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 hover:bg-gray-200 transition-colors py-2 px-4 rounded-lg ${
+                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "learningPlan" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("learningPlan")}
@@ -118,7 +116,7 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 hover:bg-gray-200 transition-colors py-2 px-4 rounded-lg ${
+                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "chat" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("chat")}
@@ -132,12 +130,12 @@ function Dashboard() {
       {/* Btn menu movil */}
       <button
         onClick={toggleMenu}
-        className="xl:hidden fixed bottom-6 right-6 bg-gray-100 p-4 rounded-full"
+        className="fixed bottom-6 right-6 rounded-full bg-gray-100 p-4 xl:hidden"
       >
         {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
       </button>
 
-      <main className="xl:pl-[400px] p-4 pt-36 md:pt-24 xl:pt-28">
+      <main className="p-4 pt-36 md:pt-24 xl:pl-[400px] xl:pt-28">
         {renderContent()}
       </main>
     </div>
