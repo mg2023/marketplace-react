@@ -30,6 +30,7 @@ const Login = () => {
       const { data: token } = await axios.post(urlServer + endpoint, usuario);
       alert("Usuario identificado con éxito 😀");
       localStorage.setItem("token", token);
+      localStorage.setItem("email", email);
       setEmail("");
       setPassword("");
       navigate("/dashboard");

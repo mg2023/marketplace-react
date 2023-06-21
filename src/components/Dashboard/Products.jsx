@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { RiEdit2Line, RiDeleteBinLine } from "react-icons/ri";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,17 +26,22 @@ const Products = () => {
   }, []);
 
   const fetchProducts = () => {
-    axios
-      .get(API_URL)
+    fetch(API_URL)
       .then((response) => {
-        const sortedProducts = response.data.sort((a, b) => {
-          // Ordenar de forma descendente (el producto más reciente primero)
+        if (response.ok) {
+          return response.json();
+        } else {
+          throw new Error("Error en la solicitud GET");
+        }
+      })
+      .then((data) => {
+        const sortedProducts = data.sort((a, b) => {
           return new Date(b.modified_at) - new Date(a.modified_at);
         });
         setProducts(sortedProducts);
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error:", error);
       });
   };
 
@@ -71,17 +75,30 @@ const Products = () => {
   const handleEdit = (product) => {
     setFormValues(product);
   };
-
   const handleDelete = (productId) => {
-    axios
-      .delete(`${API_URL}/${productId}`)
-      .then(() => {
-        setProducts((prevProducts) =>
-          prevProducts.filter((p) => p.id !== productId)
-        );
+    const data = { id: productId };
+
+    fetch(`${API_URL}/${productId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          // La solicitud se ha completado correctamente
+          // Realiza las acciones necesarias después de eliminar el producto
+          setProducts((prevProducts) =>
+            prevProducts.filter((p) => p.id !== productId)
+          );
+        } else {
+          // Ha ocurrido un error al procesar la solicitud DELETE
+          console.error("Error:", response.status);
+        }
       })
       .catch((error) => {
-        console.error(error);
+        console.error("Error:", error);
       });
   };
 
@@ -89,22 +106,46 @@ const Products = () => {
     e.preventDefault();
 
     if (formValues.id) {
-      axios
-        .put(`${API_URL}/${formValues.id}`, formValues)
+      fetch(`${API_URL}/${formValues.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      })
         .then((response) => {
-          handleAddOrUpdate(response.data);
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Error en la solicitud PUT");
+          }
+        })
+        .then((data) => {
+          handleAddOrUpdate(data);
         })
         .catch((error) => {
-          console.error(error);
+          console.error("Error:", error);
         });
     } else {
-      axios
-        .post(API_URL, formValues)
+      fetch(API_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formValues),
+      })
         .then((response) => {
-          handleAddOrUpdate(response.data);
+          if (response.ok) {
+            return response.json();
+          } else {
+            throw new Error("Error en la solicitud POST");
+          }
+        })
+        .then((data) => {
+          handleAddOrUpdate(data);
         })
         .catch((error) => {
-          console.error(error);
+          console.error("Error:", error);
         });
     }
   };
