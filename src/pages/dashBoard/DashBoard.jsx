@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
+import { AuthContext } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import {
   RiHome6Line,
   RiFolder2Line,
@@ -11,8 +13,18 @@ import {
 import Products from "../../components/Dashboard/Products";
 
 function Dashboard() {
+  const { usuario } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const [activeButton, setActiveButton] = useState("dashboard");
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Verificar el tipo de usuario y tomar acciones según corresponda
+    if (usuario.data?.type !== 1) {
+      // Si el tipo de usuario no es administrador, redirigir a otra ruta
+      navigate("/login");
+    }
+  }, [usuario]);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);

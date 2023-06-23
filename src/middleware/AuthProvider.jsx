@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const TOKEN_STORAGE_KEY = "token";
 const EXPIRATION_STORAGE_KEY = "expiration";
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [usuario, setUsuario] = useState(() => {
     const storedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
     const storedExpiration = localStorage.getItem(EXPIRATION_STORAGE_KEY);
@@ -75,10 +77,11 @@ const AuthProvider = ({ children }) => {
             data: userInfo,
           }));
 
-          // Mostrar la información del usuario en la consola
-          console.log("Usuario:", {
-            data: userInfo,
-          });
+          if (userInfo.type === 0) {
+            navigate("/");
+          } else if (userInfo.type === 1) {
+            navigate("/dashboard");
+          }
         } else {
           throw new Error("Error al obtener la información del usuario");
         }

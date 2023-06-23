@@ -1,13 +1,12 @@
 import { useContext, useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { usuario, login } = useContext(AuthContext);
+  const { login, logout, usuario } = useContext(AuthContext);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -28,17 +27,35 @@ const Login = () => {
       await login(email, password);
 
       alert("Usuario identificado con éxito 😀");
-      // Redirigir según el rol del usuario
-      if (usuario.type === 0) {
-        navigate("/home");
-      } else if (usuario.type === 1) {
-        navigate("/dashboard");
-      }
     } catch (error) {
       alert(error.message + " 🙁");
       console.log(error.message);
     }
   };
+
+  const handleLogout = () => {
+    logout();
+  };
+
+  if (usuario.token) {
+    return (
+      <div className="flex min-h-screen flex-col items-center pt-[15%]">
+        <h1 className="text-md mb-8 text-center xl:text-4xl">LOGIN</h1>
+        <h2 className="text-md text-center xl:text-xl">
+          ¡Has iniciado sesión correctamente!
+        </h2>
+
+        <div className="mt-4 flex justify-center">
+          <button
+            onClick={handleLogout}
+            className="rounded-md bg-red-600 px-4 py-2 text-white shadow hover:bg-red-700"
+          >
+            Logout
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-400px flex-row items-center justify-center py-12">
