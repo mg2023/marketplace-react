@@ -24,8 +24,14 @@ function Dashboard() {
       navigate("/login");
     } else {
       // Recuperar la información del usuario almacenada en localStorage
-      const userType = localStorage.getItem("userType");
-      if (userType !== "1") {
+      const userDataString = localStorage.getItem("userData");
+      if (userDataString) {
+        const userData = JSON.parse(userDataString);
+        const userType = userData.type;
+        if (userType !== 1) {
+          navigate("/login");
+        }
+      } else {
         navigate("/login");
       }
     }

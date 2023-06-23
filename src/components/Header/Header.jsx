@@ -6,7 +6,9 @@ import { AuthContext } from "../../context/AuthContext";
 export default function Header({ cartItemCount }) {
   const [navbar, setNavbar] = useState(false);
   const { usuario, logout } = useContext(AuthContext);
-
+  // Accede a los datos del usuario desde el contexto
+  const userData = usuario.data;
+  console.log(userData, "userData123");
   return (
     <nav className="z-900 sticky top-0 w-full bg-gray-600 shadow">
       <div className="mx-auto justify-between px-4 md:flex md:items-center md:px-8 lg:max-w-7xl">
@@ -108,6 +110,17 @@ export default function Header({ cartItemCount }) {
                 >
                   dashboard
                 </NavLink>
+              </li>
+              <li>
+                {usuario.token && usuario.data ? (
+                  <p className="font-thin text-white">
+                    Hola,
+                    <span className="font-bold">
+                      {" "}
+                      {usuario.data.first_name}
+                    </span>
+                  </p>
+                ) : null}
               </li>
             </ul>
           </div>

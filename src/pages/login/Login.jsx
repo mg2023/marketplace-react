@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Input from "../../components/Input/Input";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
@@ -26,9 +27,9 @@ const Login = () => {
 
       await login(email, password);
 
-      alert("Usuario identificado con éxito 😀");
+      toast.success("Usuario identificado con éxito 😀");
     } catch (error) {
-      alert(error.message + " 🙁");
+      toast.success(error.message + " 🙁");
       console.log(error.message);
     }
   };
