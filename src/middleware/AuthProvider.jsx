@@ -71,6 +71,9 @@ const AuthProvider = ({ children }) => {
         if (userInfoResponse.ok) {
           const userInfo = await userInfoResponse.json();
 
+          // Guardar el tipo de usuario en el localStorage
+          localStorage.setItem("userType", userInfo.type);
+
           // Actualizar el estado del usuario con la información obtenida
           setUsuario((prevUsuario) => ({
             ...prevUsuario,
@@ -98,6 +101,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem(TOKEN_STORAGE_KEY);
     localStorage.removeItem(EXPIRATION_STORAGE_KEY);
     setUsuario({ token: null, data: null, expiration: null });
+    navigate("/login");
   };
 
   const authContextValues = {

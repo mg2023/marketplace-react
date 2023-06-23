@@ -13,7 +13,9 @@ export default function Header({ cartItemCount }) {
         <div>
           <div className="flex items-center justify-between py-3 md:block md:py-5">
             <NavLink to="/">
-              <h2 className="text-2xl font-bold text-white">LOGO</h2>
+              <h2 className="text-2xl font-bold text-white">
+                GameOver - Store
+              </h2>
             </NavLink>
             <div className="md:hidden">
               <button

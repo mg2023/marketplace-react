@@ -38,6 +38,29 @@ const Login = () => {
   };
 
   if (usuario.token) {
+    if (usuario.data && usuario.data.type !== 1) {
+      // Si el usuario no es administrador, mostrar un mensaje de acceso restringido
+      return (
+        <div className="flex min-h-screen flex-col items-center pt-[15%]">
+          <h1 className="text-md mb-8 text-center xl:text-4xl">
+            Acceso Restringido
+          </h1>
+          <p className="my-4 font-black">
+            No tienes acceso a esta página. Por favor, haz logout e inicia
+            sesión con una cuenta de administrador.
+          </p>
+
+          <button
+            onClick={logout}
+            className="rounded-md bg-red-800 px-4 py-2 text-white shadow hover:bg-gray-800"
+          >
+            Logout
+          </button>
+        </div>
+      );
+    }
+
+    // Si el usuario es administrador, mostrar mensaje de inicio de sesión exitoso
     return (
       <div className="flex min-h-screen flex-col items-center pt-[15%]">
         <h1 className="text-md mb-8 text-center xl:text-4xl">LOGIN</h1>

@@ -1,5 +1,4 @@
-import { useState, useContext, useEffect } from "react";
-import { AuthContext } from "../../context/AuthContext";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   RiHome6Line,
@@ -11,20 +10,26 @@ import {
   RiCloseLine,
 } from "react-icons/ri";
 import Products from "../../components/Dashboard/Products";
+import ChatContent from "../../components/Dashboard/ChatContent";
 
 function Dashboard() {
-  const { usuario } = useContext(AuthContext);
   const [showMenu, setShowMenu] = useState(false);
   const [activeButton, setActiveButton] = useState("dashboard");
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Verificar el tipo de usuario y tomar acciones según corresponda
-    if (usuario.data?.type !== 1) {
-      // Si el tipo de usuario no es administrador, redirigir a otra ruta
+    // Verificar la existencia del token
+    const token = localStorage.getItem("token");
+    if (!token) {
       navigate("/login");
+    } else {
+      // Recuperar la información del usuario almacenada en localStorage
+      const userType = localStorage.getItem("userType");
+      if (userType !== "1") {
+        navigate("/login");
+      }
     }
-  }, [usuario]);
+  }, [navigate]);
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -66,16 +71,11 @@ function Dashboard() {
     return <h1>Learning Plan Content</h1>;
   };
 
-  const ChatContent = () => {
-    // Contenido del chat
-    return <h1>Chat Content</h1>;
-  };
-
   return (
     <div className="min-h-[50vh]">
       {/* Sidebar */}
       <div
-        className={`top-13 fixed z-50 flex h-auto w-3/4 flex-col justify-between bg-gray-100 p-8 transition-all md:w-96 xl:left-0 ${
+        className={`top-13 fixed z-50 flex h-full w-3/4 flex-col justify-between bg-gray-300 py-8 transition-all md:w-96 xl:left-0 ${
           showMenu ? "left-0" : "-left-full"
         } `}
       >
@@ -84,7 +84,7 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
+                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "dashboard" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("dashboard")}
@@ -95,7 +95,18 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
+                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
+                  activeButton === "chat" ? "bg-gray-200" : ""
+                }`}
+                onClick={() => handleButtonClick("chat")}
+              >
+                <RiChat1Line /> Comentarios
+              </a>
+            </li>
+            <li>
+              <a
+                href="#"
+                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "classes" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("classes")}
@@ -106,7 +117,7 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
+                className={`m-2  flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "resources" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("resources")}
@@ -117,23 +128,12 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
+                className={`m-2  flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
                   activeButton === "learningPlan" ? "bg-gray-200" : ""
                 }`}
                 onClick={() => handleButtonClick("learningPlan")}
               >
                 <RiCalendar2Line /> Learning Plan
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className={`flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
-                  activeButton === "chat" ? "bg-gray-200" : ""
-                }`}
-                onClick={() => handleButtonClick("chat")}
-              >
-                <RiChat1Line /> Chat
               </a>
             </li>
           </ul>
@@ -142,12 +142,12 @@ function Dashboard() {
       {/* Btn menu movil */}
       <button
         onClick={toggleMenu}
-        className="fixed bottom-6 right-6 rounded-full bg-gray-100 p-4 xl:hidden"
+        className="fixed bottom-6 right-6 rounded-full bg-gray-900 p-4 text-cyan-50 xl:hidden"
       >
         {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
       </button>
 
-      <main className="p-4 pt-36 md:pt-24 xl:pl-[400px] xl:pt-28">
+      <main className="p-4 pt-12 md:pt-12 xl:pl-[400px] xl:pt-12">
         {renderContent()}
       </main>
     </div>

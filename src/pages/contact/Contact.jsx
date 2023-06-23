@@ -1,21 +1,81 @@
-import { useState } from 'react';
-import Input from '../../components/Input/Input';
+import { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import Input from "../../components/Input/Input";
+import { AuthContext } from "../../context/AuthContext";
 
 const Contact = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
 
-  const handleSubmit = (e) => {
+  const { usuario } = useContext(AuthContext);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Manejar el envío del formulario aquí
+
+    try {
+      const token = localStorage.getItem("token");
+      const response = await fetch(
+        "https://market-express-xi.vercel.app/api/v1/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({ name, email, message }),
+        }
+      );
+
+      if (response.ok) {
+        // Manejar la respuesta exitosa aquí
+        console.log("Formulario enviado exitosamente");
+      } else {
+        // Manejar el error de respuesta aquí
+        console.error(
+          "Error al enviar el formulario:",
+          response.status,
+          response.statusText
+        );
+      }
+    } catch (error) {
+      // Manejar el error de conexión aquí
+      console.error("Error de conexión:", error);
+    }
   };
 
-  return (
-    <div className="pt-4 min-h-400px flex flex-col items-center mb-24 mt-12">
-      <h1 className="text-center text-md xl:text-4xl mb-8">CONTACTO</h1>
-      <h2 className="text-center text-md xl:text-xl">¡Nos encantaría saber de ti!</h2>
-      <form onSubmit={handleSubmit} className="w-full max-w-lg">
+  const renderContent = () => {
+    if (!usuario.token) {
+      return (
+        <div className="flex flex-col justify-center">
+          <p className="my-4 font-black">
+            Por favor, inicia sesión para contactarnos.
+          </p>
+          <Link
+            className="rounded-md bg-gray-800 px-4 py-2 text-center text-white shadow hover:bg-gray-800"
+            to="/login"
+          >
+            Iniciar sesión
+          </Link>
+        </div>
+      );
+    }
+
+    if (usuario.data && usuario.data.type === 1) {
+      return (
+        <div className="flex flex-col justify-center">
+          <p className="my-4 font-black">
+            Como administrador, no puedes enviar mensajes.
+          </p>
+        </div>
+      );
+    }
+
+    return (
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-lg"
+      >
         <Input
           label="Nombre"
           type="text"
@@ -33,12 +93,15 @@ const Contact = () => {
           className="mb-4"
         />
         <div className="w-full">
-          <label htmlFor="message" className="block mb-2 font-medium text-gray-700">
+          <label
+            htmlFor="message"
+            className="mb-2 block font-medium text-gray-700"
+          >
             Mensaje
           </label>
           <textarea
             id="message"
-            className="w-full px-4 py-2 border border-gray-300 rounded-md resize-none focus:ring-blue-500 focus:border-blue-500"
+            className="w-full resize-none rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
             rows="5"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -47,11 +110,23 @@ const Contact = () => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
+          className="mt-4 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
         >
           Enviar
         </button>
       </form>
+    );
+  };
+
+  return (
+    <div className="min-h-400px mb-24 mt-12 flex flex-col items-center pt-4">
+      <h1 className="mb-8 text-center text-xl font-black xl:text-4xl">
+        CONTACTO
+      </h1>
+      <h2 className="text-md text-center xl:text-xl">
+        ¡Nos encantaría saber de ti!
+      </h2>
+      {renderContent()}
     </div>
   );
 };
