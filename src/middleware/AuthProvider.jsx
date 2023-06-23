@@ -1,18 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { AuthContext } from "../context/AuthContext";
 
 const TOKEN_STORAGE_KEY = "token";
+const EXPIRATION_STORAGE_KEY = "expiration";
 
 const AuthProvider = ({ children }) => {
   const [usuario, setUsuario] = useState(() => {
     const storedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+    const storedExpiration = localStorage.getItem(EXPIRATION_STORAGE_KEY);
 
     return {
       token: storedToken,
       data: null,
+      expiration: storedExpiration ? new Date(storedExpiration) : null,
     };
   });
+
+  useEffect(() => {
+    const checkTokenExpiration = () => {
+      const { expiration } = usuario;
+
+      if (expiration && new Date() > expiration) {
+        // Token ha expirado, realizar acciones necesarias (por ejemplo, cerrar sesión)
+        logout();
+      }
+    };
+
+    checkTokenExpiration();
+  }, [usuario]);
 
   const login = async (email, password) => {
     try {
@@ -32,13 +48,19 @@ const AuthProvider = ({ children }) => {
         const data = await response.json();
         const { token } = data;
 
-        // Guardar el token en el localStorage
-        localStorage.setItem(TOKEN_STORAGE_KEY, token);
+        // Calcular la marca de tiempo de expiración (20 minutos después de la fecha actual)
+        const expirationDate = new Date();
+        expirationDate.setMinutes(expirationDate.getMinutes() + 20);
 
-        // Actualizar el estado del usuario con el token
+        // Guardar el token y la marca de tiempo de expiración en el localStorage
+        localStorage.setItem(TOKEN_STORAGE_KEY, token);
+        localStorage.setItem(EXPIRATION_STORAGE_KEY, expirationDate.toString());
+
+        // Actualizar el estado del usuario con el token y la marca de tiempo de expiración
         setUsuario((prevUsuario) => ({
           ...prevUsuario,
           token,
+          expiration: expirationDate,
         }));
 
         // Obtener la información del usuario
@@ -53,8 +75,8 @@ const AuthProvider = ({ children }) => {
             data: userInfo,
           }));
 
+          // Mostrar la información del usuario en la consola
           console.log("Usuario:", {
-            token,
             data: userInfo,
           });
         } else {
@@ -71,7 +93,8 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     // Limpiar la información del usuario al cerrar sesión
     localStorage.removeItem(TOKEN_STORAGE_KEY);
-    setUsuario({ token: null, data: null });
+    localStorage.removeItem(EXPIRATION_STORAGE_KEY);
+    setUsuario({ token: null, data: null, expiration: null });
   };
 
   const authContextValues = {

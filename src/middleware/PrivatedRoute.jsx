@@ -1,26 +1,25 @@
-import { Route, Navigate } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 import PropTypes from "prop-types";
+import { useEffect, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
-const PrivateRoute = ({ path, element: Element, ...props }) => {
-  const { usuario } = useAuth();
+const PrivatedRoute = () => {
+  const history = useHistory();
+  const { usuario } = useContext(AuthContext);
 
-  return usuario.token ? (
-    <Route
-      {...props}
-      element={<Element />}
-    />
-  ) : (
-    <Navigate
-      to="/login"
-      replace
-    />
-  );
+  useEffect(() => {
+    // Verificar si el usuario no está autenticado y redirigir al inicio de sesión
+    if (!usuario.token) {
+      history.push("/login");
+    }
+  }, [usuario, history]);
+
+  // Resto del código de la ruta protegida...
 };
 
-PrivateRoute.propTypes = {
+PrivatedRoute.propTypes = {
   path: PropTypes.string.isRequired,
   element: PropTypes.element.isRequired,
 };
 
-export default PrivateRoute;
+export default PrivatedRoute;

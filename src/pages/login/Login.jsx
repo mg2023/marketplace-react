@@ -62,6 +62,7 @@ const Login = () => {
       >
         <Input
           value={email}
+          label="Email"
           onChange={handleEmailChange}
           type="email"
           name="email"
@@ -70,6 +71,7 @@ const Login = () => {
         />
         <Input
           value={password}
+          label="Password"
           onChange={handlePasswordChange}
           type="password"
           name="password"
