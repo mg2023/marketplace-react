@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Input from "../../components/Input/Input";
+import { AuthContext } from "../../context/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { usuario, login } = useContext(AuthContext);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,30 +19,24 @@ const Login = () => {
 
   const iniciarSesion = async (e) => {
     e.preventDefault();
-    const urlServer = "https://market-express-git-main-mg2024.vercel.app";
-    const endpoint = "/api/v1/users/login";
 
     try {
       if (!email || !password) {
         throw new Error("Email y contraseña son obligatorias");
       }
 
-      const usuario = { email, password };
-      const { data: token } = await axios.post(urlServer + endpoint, usuario);
+      await login(email, password);
+
       alert("Usuario identificado con éxito 😀");
-      localStorage.setItem("token", token);
-      localStorage.setItem("email", email);
-      setEmail("");
-      setPassword("");
-      navigate("/dashboard");
-    } catch (error) {
-      if (error.response) {
-        alert(error.response.data + " 🙁");
-        console.log(error.response.data);
-      } else {
-        alert(error.message + " 🙁");
-        console.log(error.message);
+      // Redirigir según el rol del usuario
+      if (usuario.type === 0) {
+        navigate("/home");
+      } else if (usuario.type === 1) {
+        navigate("/dashboard");
       }
+    } catch (error) {
+      alert(error.message + " 🙁");
+      console.log(error.message);
     }
   };
 

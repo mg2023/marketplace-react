@@ -14,6 +14,8 @@ import Contact from "./pages/contact/Contact";
 import Team from "./pages/team/Team";
 import DashBoard from "./pages/dashBoard/DashBoard";
 import Context from "./context/Context";
+import AuthProvider from "./middleware/AuthProvider";
+//import PrivatedRoute from "./middleware/PrivatedRoute";
 
 export default function App() {
   useEffect(() => {
@@ -37,7 +39,6 @@ export default function App() {
     toast.error("Producto eliminado del carrito");
   };
 
-  const [usuario, setUsuario] = useState(null);
   const [cartItems, setCartItems] = useState([]);
   const [products, setProducts] = useState([]);
 
@@ -45,8 +46,6 @@ export default function App() {
     <div className="flex min-h-screen flex-col">
       <Context.Provider
         value={{
-          usuario,
-          setUsuario,
           cartItems,
           setCartItems,
           addToCart,
@@ -57,50 +56,52 @@ export default function App() {
         <ToastContainer />
 
         <BrowserRouter>
-          <Header cartItemCount={cartItems.length} />
-          <div className="grow">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <Home
-                    addToCart={addToCart}
-                    removeFromCart={removeFromCart}
-                    products={products}
-                  />
-                }
-              />
-              <Route
-                path="/dashboard"
-                element={<DashBoard />}
-              />
-              <Route
-                path="/login"
-                element={<Login />}
-              />
-              <Route
-                path="/team"
-                element={<Team />}
-              />
-              <Route
-                path="/register"
-                element={<Register />}
-              />
-              <Route
-                path="/contact"
-                element={<Contact />}
-              />
-              <Route
-                path="/product/:id"
-                element={<ProductDetail products={products} />}
-              />
-              <Route
-                path="/cart"
-                element={<Cart />}
-              />
-            </Routes>
-          </div>
-          <Footer className="mt-auto" />
+          <AuthProvider>
+            <Header cartItemCount={cartItems.length} />
+            <div className="grow">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <Home
+                      addToCart={addToCart}
+                      removeFromCart={removeFromCart}
+                      products={products}
+                    />
+                  }
+                />
+                <Route
+                  path="/dashboard"
+                  element={<DashBoard />}
+                />
+                <Route
+                  path="/login"
+                  element={<Login />}
+                />
+                <Route
+                  path="/team"
+                  element={<Team />}
+                />
+                <Route
+                  path="/register"
+                  element={<Register />}
+                />
+                <Route
+                  path="/contact"
+                  element={<Contact />}
+                />
+                <Route
+                  path="/product/:id"
+                  element={<ProductDetail products={products} />}
+                />
+                <Route
+                  path="/cart"
+                  element={<Cart />}
+                />
+              </Routes>
+            </div>
+            <Footer className="mt-auto" />
+          </AuthProvider>
         </BrowserRouter>
       </Context.Provider>
     </div>
