@@ -57,6 +57,9 @@ const Login = () => {
           >
             Logout
           </button>
+          <h2 className="text-md mt-4 text-center xl:text-xl">
+            DEMO ADMIN: admin@admin.com / admin
+          </h2>
         </div>
       );
     }
@@ -77,6 +80,9 @@ const Login = () => {
             Logout
           </button>
         </div>
+        <h2 className="text-md mt-4 text-center xl:text-xl">
+          DEMO ADMIN: admin@admin.com / admin
+        </h2>
       </div>
     );
   }
@@ -148,6 +154,9 @@ const Login = () => {
           <span>Iniciar sesión con Google</span>
         </button>
       </div>
+      <h2 className="text-md mt-4 text-center xl:text-xl">
+        DEMO ADMIN: admin@admin.com / admin
+      </h2>
     </div>
   );
 };

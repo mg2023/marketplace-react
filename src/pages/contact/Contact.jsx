@@ -2,11 +2,14 @@ import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Input from "../../components/Input/Input";
 import { AuthContext } from "../../context/AuthContext";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const { usuario } = useContext(AuthContext);
 
@@ -30,6 +33,12 @@ const Contact = () => {
       if (response.ok) {
         // Manejar la respuesta exitosa aquí
         console.log("Formulario enviado exitosamente");
+        setFormSubmitted(true); // Establecer el estado de formSubmitted en true
+        toast.success("Formulario enviado exitosamente");
+        // Restablecer los campos del formulario
+        setName("");
+        setEmail("");
+        setMessage("");
       } else {
         // Manejar el error de respuesta aquí
         console.error(

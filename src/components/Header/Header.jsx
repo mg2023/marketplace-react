@@ -15,9 +15,11 @@ export default function Header({ cartItemCount }) {
         <div>
           <div className="flex items-center justify-between py-3 md:block md:py-5">
             <NavLink to="/">
-              <h2 className="text-2xl font-bold text-white">
-                GameOver - Store
-              </h2>
+              <img
+                className="max-w-[35%]"
+                src="https://firebasestorage.googleapis.com/v0/b/proyecto-final-desafio-latam.appspot.com/o/logo%2Fgame_over2.png?alt=media&token=208cfd28-9fb5-4ed3-928f-efa8a0808a4a"
+                alt="Logo Game Over"
+              />
             </NavLink>
             <div className="md:hidden">
               <button

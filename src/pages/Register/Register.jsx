@@ -45,7 +45,7 @@ const Register = () => {
       <h3 className="xl:text-md mb-8 text-center text-xs">
         Crea una nueva cuenta o Inicia sesión para
         <NavLink
-          to="/register"
+          to="/login"
           className="underline hover:font-bold"
         >
           {" "}

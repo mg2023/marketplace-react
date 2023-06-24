@@ -60,6 +60,7 @@ const AuthProvider = ({ children }) => {
     };
 
     checkTokenExpiration();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [usuario]);
 
   const login = async (email, password) => {
