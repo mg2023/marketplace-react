@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 const ChatContent = () => {
   const [comments, setComments] = useState([]);
+  const API_URL = "https://market-express-xi.vercel.app/api/v1/contact";
 
   useEffect(() => {
     const fetchComments = async () => {
@@ -45,6 +46,39 @@ const ChatContent = () => {
     fetchComments();
   }, []);
 
+  const handleDelete = (commentId) => {
+    const data = { id: commentId };
+    const token = localStorage.getItem("token");
+
+    fetch(`${API_URL}/${commentId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log("Comentario eliminado exitosamente");
+          // Actualizar la lista de comentarios después de eliminar el comentario
+          const updatedComments = comments.filter(
+            (comment) => comment.id !== commentId
+          );
+          setComments(updatedComments);
+        } else {
+          console.error(
+            "Error al eliminar el comentario:",
+            response.status,
+            response.statusText
+          );
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <div className="container mx-auto">
       <h1 className="mb-12 text-center text-4xl font-bold">Comentarios</h1>
@@ -57,6 +91,7 @@ const ChatContent = () => {
             <h3 className="mb-2 text-lg font-semibold">Name: {comment.name}</h3>
             <p className="mb-2">Email: {comment.email}</p>
             <p className="mb-2">Comments: {comment.comments}</p>
+            <button onClick={() => handleDelete(comment.id)}>Eliminar</button>
           </div>
         ))}
       </div>
