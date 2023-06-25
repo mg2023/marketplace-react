@@ -81,7 +81,7 @@ function Dashboard() {
     <div className=" min-h-[50vh]">
       {/* Sidebar */}
       <div
-        className={`top-13 fixed z-50 flex h-full w-3/4 flex-col justify-between bg-bgfront/90 py-8 transition-all md:w-96 xl:left-0 ${
+        className={`top-13 fixed z-50 flex h-full w-auto min-w-[250px] flex-col justify-between bg-bgfront/90 py-8 transition-all xl:left-0 ${
           showMenu ? "left-0" : "-left-full"
         } `}
       >
@@ -161,7 +161,7 @@ function Dashboard() {
         {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
       </button>
 
-      <main className="p-4 pt-12 md:pt-12 xl:pl-[400px] xl:pt-12">
+      <main className="p-4 pt-12 md:pt-12 xl:pl-[250px] xl:pt-12">
         {renderContent()}
       </main>
     </div>

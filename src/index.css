@@ -5,7 +5,7 @@
 label {
     color: #9dd81c !important;
   }
-  input {
+  input, textarea {
     color: #0F1729 !important;
   }
   

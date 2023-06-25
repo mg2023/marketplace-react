@@ -114,6 +114,53 @@ export default function Header({ cartItemCount }) {
                   dashboard
                 </NavLink>
               </li>
+
+              <li>
+                <div className="flex flex-1 justify-end px-2">
+                  <div className="flex items-stretch">
+                    <div className="dropdown dropdown-end">
+                      <label
+                        tabIndex={0}
+                        className="btn btn-ghost rounded-btn"
+                      >
+                        Dropdown
+                      </label>
+                      <ul
+                        tabIndex={0}
+                        className="menu dropdown-content rounded-box z-[1] mt-4 w-52 bg-secondary p-2 shadow"
+                      >
+                        <li>
+                          <NavLink to="/dashboard">
+                            {" "}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                              />
+                            </svg>{" "}
+                            Dashboard
+                          </NavLink>
+                        </li>
+                        <li>
+                          {usuario.token ? (
+                            <button onClick={logout}>Logout</button>
+                          ) : (
+                            <NavLink to="/login">Login</NavLink>
+                          )}
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
               <li>
                 {usuario.token && usuario.data ? (
                   <p className="font-thin text-text">

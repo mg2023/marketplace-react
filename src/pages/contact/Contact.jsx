@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
+  const [comments, setComments] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [formSubmitted, setFormSubmitted] = useState(false);
 
@@ -26,7 +26,7 @@ const Contact = () => {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
-          body: JSON.stringify({ name, email, message }),
+          body: JSON.stringify({ name, email, comments }),
         }
       );
 
@@ -38,7 +38,7 @@ const Contact = () => {
         // Restablecer los campos del formulario
         setName("");
         setEmail("");
-        setMessage("");
+        setComments("");
       } else {
         // Manejar el error de respuesta aquí
         console.error(
@@ -103,17 +103,17 @@ const Contact = () => {
         />
         <div className="w-full">
           <label
-            htmlFor="message"
+            htmlFor="comments"
             className="mb-2 block font-medium text-gray-700"
           >
             Mensaje
           </label>
           <textarea
-            id="message"
+            id="comments"
             className="w-full resize-none rounded-md border border-gray-300 px-4 py-2 focus:border-blue-500 focus:ring-blue-500"
             rows="5"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
+            value={comments}
+            onChange={(e) => setComments(e.target.value)}
             placeholder="Escribe tu mensaje..."
           ></textarea>
         </div>

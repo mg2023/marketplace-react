@@ -158,7 +158,7 @@ const Products = () => {
   return (
     <>
       <ToastContainer />
-      <div className="container mx-auto px-4">
+      <div className=" mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           <div>
             <form
