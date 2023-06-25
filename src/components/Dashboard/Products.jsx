@@ -163,7 +163,7 @@ const Products = () => {
           <div>
             <form
               onSubmit={handleSubmit}
-              className="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md"
+              className="mb-4 rounded bg-bgfront px-8 pb-8 pt-6 shadow-md"
             >
               <h2 className="mb-4 text-2xl">
                 {formValues.id ? "Actualizar Producto" : "Agregar Producto"}
@@ -311,9 +311,9 @@ const Products = () => {
                         is_new: e.target.checked,
                       }))
                     }
-                    className="mr-2 leading-tight"
+                    className="checkbox mr-2 leading-tight"
                   />
-                  <span className="text-gray-700">¿Es nuevo?</span>
+                  <span className="text-secondary">¿Es nuevo?</span>
                 </label>
               </div>
               <div className="mb-4">
@@ -332,16 +332,17 @@ const Products = () => {
                         is_special_offer: e.target.checked,
                       }))
                     }
-                    className="mr-2 leading-tight"
+                    className="checkbox checkbox-primary mr-2 leading-tight"
                   />
-                  <span className="text-gray-700">
+
+                  <span className="text-secondary">
                     ¿Es una oferta especial?
                   </span>
                 </label>
               </div>
               <button
                 type="submit"
-                className="focus:shadow-outline rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 focus:outline-none"
+                className="focus:shadow-outline rounded bg-primary px-4 py-2 font-bold text-bgback hover:bg-primaryHover focus:outline-none"
               >
                 {formValues.id ? "Actualizar" : "Agregar"}
               </button>
@@ -351,28 +352,26 @@ const Products = () => {
             {products.map((product) => (
               <div
                 key={product.id}
-                className="mb-4 flex items-center justify-between rounded bg-white px-8 py-4 shadow-md"
+                className="mb-2 flex items-center justify-between rounded bg-bgfront px-6 py-4 shadow-md"
               >
-                <div>
+                <div className="w-3/4">
                   <h3 className="text-xl font-bold">{product.product_name}</h3>
-                  <p className="text-gray-700">
-                    Descripción: {product.descrip}
-                  </p>
-                  <p className="text-gray-700">Precio: {product.price}</p>
-                  <p className="text-gray-700">
+                  <p className="text-primary">Descripción: {product.descrip}</p>
+                  <p className="text-secondary">Precio: {product.price}</p>
+                  <p className="text-primary">
                     Cantidad en stock: {product.stock_quantity}
                   </p>
                 </div>
-                <div>
+                <div className="w-1/4">
                   <button
                     onClick={() => handleEdit(product)}
-                    className="focus:shadow-outline mr-2 rounded bg-green-500 px-4 py-2 font-bold text-white hover:bg-green-700 focus:outline-none"
+                    className="focus:shadow-outline m-2 rounded bg-primary p-2 font-bold text-bgback  hover:bg-primaryHover focus:outline-none"
                   >
                     <RiEdit2Line />
                   </button>
                   <button
                     onClick={() => handleDelete(product.id)}
-                    className="focus:shadow-outline rounded bg-red-500 px-4 py-2 font-bold text-white hover:bg-red-700 focus:outline-none"
+                    className="focus:shadow-outline m-2 rounded bg-red-500 p-2 font-bold text-white hover:bg-red-700 focus:outline-none"
                   >
                     <RiDeleteBinLine />
                   </button>

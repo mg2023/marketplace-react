@@ -92,9 +92,9 @@ const ChatContent = () => {
             <h3 className="mb-2 text-lg font-semibold">Name: {comment.name}</h3>
             <p className="mb-2">Email: {comment.email}</p>
             <p className="mb-2">Comments: {comment.comments}</p>
-            <div className="divider"></div>
+            <div className="divider text-text"></div>
             <button
-              className="mt-4 rounded-md bg-secondary px-8 py-1  shadow hover:bg-secondaryHover
+              className="rounded-md bg-secondary px-8 py-1  shadow hover:bg-secondaryHover
               "
               onClick={() => handleDelete(comment.id)}
             >

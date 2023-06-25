@@ -11,7 +11,7 @@ export default function CategoryGrid() {
           <h1 className="text-2xl font-extrabold text-text sm:text-5xl">
             Categorías Destacadas
             <strong className="mt-2 block font-extrabold text-primary">
-              Disfruta de la mejor colección de juegos de ps4.
+              Disfruta de la mejor colección de juegos de PS4
             </strong>
           </h1>
         </div>

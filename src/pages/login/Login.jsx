@@ -53,12 +53,13 @@ const Login = () => {
 
           <button
             onClick={logout}
-            className="rounded-md bg-red-800 px-4 py-2 text-white shadow hover:bg-gray-800"
+            className="rounded-md bg-secondary px-4 py-2 text-white shadow hover:bg-secondaryHover"
           >
             Logout
           </button>
-          <h2 className="text-md mt-4 text-center xl:text-xl">
-            DEMO ADMIN: admin@admin.com / admin
+          <h2 className="text-md mt-8 text-center xl:text-xl">
+            DEMO ADMIN:{" "}
+            <span className="text-primary"> admin@admin.com / admin</span>
           </h2>
         </div>
       );
@@ -80,8 +81,9 @@ const Login = () => {
             Logout
           </button>
         </div>
-        <h2 className="text-md mt-4 text-center xl:text-xl">
-          DEMO ADMIN: admin@admin.com / admin
+        <h2 className="text-md mt-8 text-center xl:text-xl">
+          DEMO ADMIN:{" "}
+          <span className="text-primary"> admin@admin.com / admin</span>
         </h2>
       </div>
     );
@@ -113,7 +115,7 @@ const Login = () => {
           onChange={handleEmailChange}
           type="email"
           name="email"
-          className="form-control"
+          className="form-control text-text"
           placeholder="Ingrese su correo electrónico"
         />
         <Input
@@ -128,19 +130,19 @@ const Login = () => {
         <div className="flex justify-between">
           <button
             onClick={iniciarSesion}
-            className="w-[45%] rounded bg-blue-500 px-4 py-2 text-center font-bold text-white hover:bg-blue-700"
+            className="w-[45%] rounded bg-primary px-4 py-2 text-center font-bold text-primaryText  hover:bg-primaryHover"
           >
             Iniciar sesión
           </button>
           <NavLink
             to="/register"
-            className="w-[45%] rounded bg-green-500 px-4 py-2 text-center font-bold text-white hover:bg-green-700"
+            className=" w-[45%] rounded bg-secondary px-4 py-2 text-center font-bold hover:bg-secondaryHover"
           >
             Ir a Crear Cuenta
           </NavLink>
         </div>
       </form>
-      <div className="mt-14 flex justify-center">
+      <div className="mt-14  hidden justify-center">
         <button className="flex items-center rounded bg-red-600 px-4 py-2 font-bold text-white hover:bg-red-700">
           <svg
             className="mr-2 h-5 w-5"
@@ -154,8 +156,9 @@ const Login = () => {
           <span>Iniciar sesión con Google</span>
         </button>
       </div>
-      <h2 className="text-md mt-4 text-center xl:text-xl">
-        DEMO ADMIN: admin@admin.com / admin
+      <h2 className="text-md mt-8 text-center xl:text-xl">
+        DEMO ADMIN:{" "}
+        <span className="text-primary"> admin@admin.com / admin</span>
       </h2>
     </div>
   );
