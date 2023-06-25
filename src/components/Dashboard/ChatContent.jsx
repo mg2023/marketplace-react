@@ -66,6 +66,7 @@ const ChatContent = () => {
             (comment) => comment.id !== commentId
           );
           setComments(updatedComments);
+          console.log(setComments, "comentarios");
         } else {
           console.error(
             "Error al eliminar el comentario:",
@@ -86,12 +87,19 @@ const ChatContent = () => {
         {comments.map((comment) => (
           <div
             key={comment.id}
-            className="rounded bg-white p-4 shadow"
+            className="rounded bg-bgfront p-4 shadow"
           >
             <h3 className="mb-2 text-lg font-semibold">Name: {comment.name}</h3>
             <p className="mb-2">Email: {comment.email}</p>
             <p className="mb-2">Comments: {comment.comments}</p>
-            <button onClick={() => handleDelete(comment.id)}>Eliminar</button>
+            <div className="divider"></div>
+            <button
+              className="mt-4 rounded-md bg-secondary px-8 py-1  shadow hover:bg-secondaryHover
+              "
+              onClick={() => handleDelete(comment.id)}
+            >
+              Eliminar
+            </button>
           </div>
         ))}
       </div>

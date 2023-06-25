@@ -2,6 +2,7 @@ import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Input from "../../components/Input/Input";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ const Register = () => {
   const [telephone, setTelephone] = useState("");
 
   const handleRegister = async () => {
+    if (!email || !password || !firstName || !lastName || !telephone) {
+      toast.error("Por favor, completa todos los campos");
+      return;
+    }
     try {
       const usuario = {
         email,

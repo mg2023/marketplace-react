@@ -78,10 +78,10 @@ function Dashboard() {
   };
 
   return (
-    <div className="min-h-[50vh]">
+    <div className=" min-h-[50vh]">
       {/* Sidebar */}
       <div
-        className={`top-13 fixed z-50 flex h-full w-3/4 flex-col justify-between bg-gray-300 py-8 transition-all md:w-96 xl:left-0 ${
+        className={`top-13 fixed z-50 flex h-full w-3/4 flex-col justify-between bg-bgfront/90 py-8 transition-all md:w-96 xl:left-0 ${
           showMenu ? "left-0" : "-left-full"
         } `}
       >
@@ -90,8 +90,10 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
-                  activeButton === "dashboard" ? "bg-gray-200" : ""
+                className={` m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-primary hover:text-primaryText ${
+                  activeButton === "dashboard"
+                    ? "bg-primary text-primaryText"
+                    : ""
                 }`}
                 onClick={() => handleButtonClick("dashboard")}
               >
@@ -101,8 +103,8 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
-                  activeButton === "chat" ? "bg-gray-200" : ""
+                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-primary hover:text-primaryText ${
+                  activeButton === "chat" ? "bg-primary text-primaryText" : ""
                 }`}
                 onClick={() => handleButtonClick("chat")}
               >
@@ -112,8 +114,10 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
-                  activeButton === "classes" ? "bg-gray-200" : ""
+                className={`m-2 flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-primary hover:text-primaryText ${
+                  activeButton === "classes"
+                    ? "bg-primary text-primaryText"
+                    : ""
                 }`}
                 onClick={() => handleButtonClick("classes")}
               >
@@ -123,8 +127,10 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`m-2  flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
-                  activeButton === "resources" ? "bg-gray-200" : ""
+                className={`m-2  flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-primary hover:text-primaryText ${
+                  activeButton === "resources"
+                    ? "bg-primary text-primaryText"
+                    : ""
                 }`}
                 onClick={() => handleButtonClick("resources")}
               >
@@ -134,8 +140,10 @@ function Dashboard() {
             <li>
               <a
                 href="#"
-                className={`m-2  flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-gray-200 ${
-                  activeButton === "learningPlan" ? "bg-gray-200" : ""
+                className={`m-2  flex items-center gap-4 rounded-lg px-4 py-2 transition-colors hover:bg-primary hover:text-primaryText ${
+                  activeButton === "learningPlan"
+                    ? "bg-primary text-primaryText"
+                    : ""
                 }`}
                 onClick={() => handleButtonClick("learningPlan")}
               >
@@ -148,7 +156,7 @@ function Dashboard() {
       {/* Btn menu movil */}
       <button
         onClick={toggleMenu}
-        className="fixed bottom-6 right-6 rounded-full bg-gray-900 p-4 text-cyan-50 xl:hidden"
+        className="fixed bottom-6 right-6 rounded-full bg-secondary p-4 text-bgback xl:hidden"
       >
         {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
       </button>

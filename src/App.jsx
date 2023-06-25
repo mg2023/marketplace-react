@@ -15,6 +15,8 @@ import Team from "./pages/team/Team";
 import DashBoard from "./pages/dashBoard/DashBoard";
 import Context from "./context/Context";
 import AuthProvider from "./middleware/AuthProvider";
+import Category from "./pages/Category/Category";
+import Catalogo from "./pages/Catalogo/Catalogo";
 //import PrivatedRoute from "./middleware/PrivatedRoute";
 
 export default function App() {
@@ -43,7 +45,7 @@ export default function App() {
   const [products, setProducts] = useState([]);
 
   return (
-    <div className="flex min-h-screen flex-col">
+    <div className="flex min-h-screen flex-col bg-bgback text-text">
       <Context.Provider
         value={{
           cartItems,
@@ -75,6 +77,10 @@ export default function App() {
                   element={<DashBoard />}
                 />
                 <Route
+                  path="/catalogo"
+                  element={<Catalogo />}
+                />
+                <Route
                   path="/login"
                   element={<Login />}
                 />
@@ -93,6 +99,10 @@ export default function App() {
                 <Route
                   path="/product/:id"
                   element={<ProductDetail products={products} />}
+                />
+                <Route
+                  path="/category/:category"
+                  element={<Category products={products} />}
                 />
                 <Route
                   path="/cart"

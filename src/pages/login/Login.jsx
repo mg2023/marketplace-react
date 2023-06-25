@@ -29,7 +29,7 @@ const Login = () => {
 
       toast.success("Usuario identificado con éxito 😀");
     } catch (error) {
-      toast.success(error.message + " 🙁");
+      toast.error(error.message + " 🙁");
       console.log(error.message);
     }
   };
