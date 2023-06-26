@@ -179,6 +179,12 @@ const Products = () => {
     });
   };
 
+  const calculateProfitPercentage = (cost, price) => {
+    const profit = price - cost;
+    const profitPercentage = (profit / cost) * 100;
+    return profitPercentage.toFixed(2);
+  };
+
   return (
     <div>
       <form
@@ -364,7 +370,8 @@ const Products = () => {
             <tr>
               <th className="text-text">Nombre</th>
               <th className="text-text">Costo/Precio</th>
-              <th className="text-text">Precio</th>
+              <th className="text-text">Margen/G</th>
+              <th className="text-text">Stock</th>
               <th className="text-text"></th>
               <th className="text-text"></th>
             </tr>
@@ -378,7 +385,7 @@ const Products = () => {
                       <div className="mask mask-squircle h-12 w-12">
                         <img
                           src={product.url_img}
-                          alt="Avatar Tailwind CSS Component"
+                          alt="Avatar"
                         />
                       </div>
                     </div>
@@ -399,13 +406,19 @@ const Products = () => {
                     {product.price}
                   </span>
                 </td>
-                <td>{product.descrip}</td>
+
+                <td>
+                  <span>
+                    {calculateProfitPercentage(product.cost, product.price)}%
+                  </span>
+                </td>
+                <td>{product.stock_quantity}</td>
                 <th>
                   <Link
                     to={`/product/${product.id}`}
                     className="btn btn-xs hover:bg-secondary"
                   >
-                    Preview
+                    Detalle
                   </Link>
                 </th>
                 <th>
