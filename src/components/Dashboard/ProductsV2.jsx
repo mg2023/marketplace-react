@@ -9,6 +9,8 @@ const API_URL =
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [filter, setFilter] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
   const [formValues, setFormValues] = useState({
     product_name: "",
     descrip: "",
@@ -21,9 +23,14 @@ const Products = () => {
     is_new: false,
     is_special_offer: false,
   });
+  const [sortOrder, setSortOrder] = useState({
+    field: "",
+    ascending: true,
+  });
 
   useEffect(() => {
     fetchProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchProducts = () => {
@@ -36,14 +43,77 @@ const Products = () => {
         }
       })
       .then((data) => {
-        const sortedProducts = data.sort((a, b) => {
-          return new Date(b.modified_at) - new Date(a.modified_at);
-        });
+        const sortedProducts = sortProducts(data, sortOrder);
         setProducts(sortedProducts);
+        setFilteredProducts(sortedProducts); // Actualiza la lista filtrada
       })
       .catch((error) => {
         console.error("Error:", error);
       });
+  };
+
+  useEffect(() => {
+    const filtered = products.filter((product) =>
+      product.product_name.toLowerCase().includes(filter.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  }, [products, filter]);
+
+  const sortProducts = (data, sortOrder) => {
+    const { field, ascending } = sortOrder;
+    let sortedData = [...data];
+
+    switch (field) {
+      case "price":
+        sortedData.sort((a, b) => {
+          if (ascending) {
+            return a.price - b.price;
+          } else {
+            return b.price - a.price;
+          }
+        });
+        break;
+      case "cost":
+        sortedData.sort((a, b) => {
+          if (ascending) {
+            return a.price - a.cost - (b.price - b.cost);
+          } else {
+            return b.price - b.cost - (a.price - a.cost);
+          }
+        });
+        break;
+      case "stock_quantity":
+        sortedData.sort((a, b) => {
+          if (ascending) {
+            return a.stock_quantity - b.stock_quantity;
+          } else {
+            return b.stock_quantity - a.stock_quantity;
+          }
+        });
+        break;
+      case "product_name":
+        sortedData.sort((a, b) => {
+          if (ascending) {
+            return a.product_name.localeCompare(b.product_name);
+          } else {
+            return b.product_name.localeCompare(a.product_name);
+          }
+        });
+        break;
+      default:
+        break;
+    }
+
+    return sortedData;
+  };
+
+  const handleSort = (field) => {
+    const ascending = sortOrder.field === field ? !sortOrder.ascending : true;
+    const newSortOrder = { field, ascending };
+    const sortedProducts = sortProducts(products, newSortOrder);
+
+    setSortOrder(newSortOrder);
+    setProducts(sortedProducts);
   };
 
   const handleAddOrUpdate = (product) => {
@@ -363,21 +433,150 @@ const Products = () => {
           </button>
         </div>
       </form>
-
+      <div className="">
+        {" "}
+        <hr className="text-bgFront my-12 w-full px-24" />
+      </div>
       <div className="overflow-x-auto px-12">
+        <div>
+          <input
+            type="text"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            placeholder="Filtrar por nombre"
+            className="mb-4 w-full rounded-md border border-gray-300 px-4 py-2"
+          />
+        </div>
         <table className="table w-full">
           <thead>
             <tr>
-              <th className="text-text">Nombre</th>
-              <th className="text-text">Costo/Precio</th>
-              <th className="text-text">Margen/G</th>
-              <th className="text-text">Stock</th>
-              <th className="text-text"></th>
+              <th
+                className="text-text"
+                onClick={() => handleSort("product_name")}
+              >
+                <div className="flex cursor-pointer items-center">
+                  Nombre
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-arrows-move-vertical"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="#7bc62d"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path d="M9 18l3 3l3 -3" />
+                    <path d="M12 15v6" />
+                    <path d="M15 6l-3 -3l-3 3" />
+                    <path d="M12 3v6" />
+                  </svg>
+                </div>
+              </th>
+              <th
+                className="text-text"
+                onClick={() => handleSort("price")}
+              >
+                <div className="flex cursor-pointer items-center">
+                  Costo/Precio{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-arrows-move-vertical"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="#7bc62d"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path d="M9 18l3 3l3 -3" />
+                    <path d="M12 15v6" />
+                    <path d="M15 6l-3 -3l-3 3" />
+                    <path d="M12 3v6" />
+                  </svg>
+                </div>
+              </th>
+              <th
+                className="text-text"
+                onClick={() => handleSort("cost")}
+              >
+                <div className="flex cursor-pointer items-center">
+                  Margen/G{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-arrows-move-vertical"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="#7bc62d"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path d="M9 18l3 3l3 -3" />
+                    <path d="M12 15v6" />
+                    <path d="M15 6l-3 -3l-3 3" />
+                    <path d="M12 3v6" />
+                  </svg>
+                </div>
+              </th>
+              <th
+                className="text-text"
+                onClick={() => handleSort("stock_quantity")}
+              >
+                <div className="flex cursor-pointer items-center">
+                  {" "}
+                  Stock{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="icon icon-tabler icon-tabler-arrows-move-vertical"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="#7bc62d"
+                    fill="none"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path
+                      stroke="none"
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path d="M9 18l3 3l3 -3" />
+                    <path d="M12 15v6" />
+                    <path d="M15 6l-3 -3l-3 3" />
+                    <path d="M12 3v6" />
+                  </svg>
+                </div>
+              </th>
+
               <th className="text-text"></th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <tr key={product.id}>
                 <td>
                   <div className="flex items-center space-x-3">
@@ -413,6 +612,7 @@ const Products = () => {
                   </span>
                 </td>
                 <td>{product.stock_quantity}</td>
+
                 <th>
                   <Link
                     to={`/product/${product.id}`}
