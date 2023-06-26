@@ -592,26 +592,32 @@ const Products = () => {
                       <div className="mb-2 font-bold">
                         {product.product_name}
                       </div>
-                      <span className="rounded bg-secondary px-2.5 py-1.5 text-xs font-semibold">
+                      <span className="rounded bg-secondary px-2.5 py-1.5 text-xs font-medium">
                         {product.category}
                       </span>
                     </div>
                   </div>
                 </td>
                 <td>
-                  {product.cost}
+                  <span className="badge badge-outline badge-xl mt-2  bg-secondary text-xs ">
+                    {product.cost}
+                  </span>
                   <br />
-                  <span className="badge badge-outline badge-xl mt-2 ">
+                  <span className="badge badge-outline badge-xl mt-2 bg-primary py-2 text-xl font-semibold  text-bgback">
                     {product.price}
                   </span>
                 </td>
 
                 <td>
-                  <span>
+                  <span className="text-xl font-semibold text-primary">
                     {calculateProfitPercentage(product.cost, product.price)}%
                   </span>
                 </td>
-                <td>{product.stock_quantity}</td>
+                <td>
+                  <span className="text-xl font-semibold ">
+                    {product.stock_quantity}
+                  </span>
+                </td>
 
                 <th>
                   <Link
