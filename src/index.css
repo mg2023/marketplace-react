@@ -9,6 +9,6 @@ label {
     color: #0F1729 !important;
   }
   
-  a.active {
+  .dropdown a.active {
     background-color: #dc124c !important;
   }
