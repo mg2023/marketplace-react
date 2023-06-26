@@ -64,7 +64,7 @@ const Products = () => {
       price: "",
       stock_quantity: "",
       url_img: "",
-      stars_quantity: "",
+      stars_quantity: "1",
       category: "",
       is_new: false,
       is_special_offer: false,
@@ -109,8 +109,10 @@ const Products = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Actualiza el valor de stars_quantity a null antes de enviar los datos
-    const updatedFormValues = { ...formValues, stars_quantity: null };
+    const updatedFormValues = { ...formValues };
+    if (updatedFormValues.stars_quantity === "") {
+      updatedFormValues.stars_quantity = "1";
+    }
 
     if (updatedFormValues.id) {
       fetch(`${API_URL}/${updatedFormValues.id}`, {
@@ -298,8 +300,7 @@ const Products = () => {
               type="number"
               id="stars_quantity"
               name="stars_quantity"
-              value={formValues.stars_quantity}
-              onChange={handleChange}
+              value="1"
               className="focus:shadow-outline w-full border-2 border-solid p-2 leading-tight shadow focus:outline-none"
             />
           </div>
