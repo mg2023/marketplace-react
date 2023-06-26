@@ -9,8 +9,9 @@ import {
   RiMenu3Fill,
   RiCloseLine,
 } from "react-icons/ri";
-import Products from "../../components/Dashboard/Products";
+import Products from "../../components/Dashboard/ProductsV2";
 import ChatContent from "../../components/Dashboard/ChatContent";
+import SubMenu from "../../components/Dashboard/SubMenu";
 
 function Dashboard() {
   const [showMenu, setShowMenu] = useState(false);
@@ -161,9 +162,7 @@ function Dashboard() {
         {showMenu ? <RiCloseLine /> : <RiMenu3Fill />}
       </button>
 
-      <main className="p-4 pt-12 md:pt-12 xl:pl-[250px] xl:pt-12">
-        {renderContent()}
-      </main>
+      <main className="xl:pl-[250px]">{renderContent()}</main>
     </div>
   );
 }

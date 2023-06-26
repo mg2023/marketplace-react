@@ -66,17 +66,17 @@ export default function Header({ cartItemCount }) {
               navbar ? "block" : "hidden"
             }`}
           >
-            <ul className="items-center justify-center space-y-8 text-center text-text md:flex md:space-x-6 md:space-y-0">
-              <li className="">
+            <ul className="items-center justify-center space-y-8 text-center text-text  md:flex md:space-x-6 md:space-y-0">
+              <li className="hover:text-primary">
                 <NavLink to="/">Inicio</NavLink>
               </li>
-              <li className="">
+              <li className="hover:text-primary">
                 <NavLink to="/catalogo">Catalogo</NavLink>
               </li>
-              <li className="">
-                <NavLink to="/contact">Contacto</NavLink>
+              <li className="hover:text-primary">
+                <NavLink to="/support">Support</NavLink>
               </li>
-              <li className="">
+              {/* <li className="">
                 {usuario.token ? (
                   <button
                     onClick={logout}
@@ -92,7 +92,7 @@ export default function Header({ cartItemCount }) {
                     Login
                   </NavLink>
                 )}
-              </li>
+              </li>*/}
               <li className="relative ">
                 <NavLink
                   to="/cart"
@@ -106,14 +106,14 @@ export default function Header({ cartItemCount }) {
                   )}
                 </NavLink>
               </li>
-              <li className="">
+              {/*  <li className="">
                 <NavLink
                   to="/dashboard"
                   className="rounded-md bg-primary px-4 py-2 text-primaryText shadow hover:bg-primaryHover"
                 >
                   dashboard
                 </NavLink>
-              </li>
+              </li>*/}
 
               <li>
                 <div className="flex flex-1 justify-end px-2">
@@ -123,14 +123,43 @@ export default function Header({ cartItemCount }) {
                         tabIndex={0}
                         className="btn btn-ghost rounded-btn"
                       >
-                        Dropdown
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="icon icon-tabler icon-tabler-home-cog"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          strokeWidth={1.5}
+                          stroke="#c9de00"
+                          fill="none"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        >
+                          <path
+                            stroke="none"
+                            d="M0 0h24v24H0z"
+                            fill="none"
+                          />
+                          <path d="M9 21v-6a2 2 0 0 1 2 -2h1.6" />
+                          <path d="M20 11l-8 -8l-9 9h2v7a2 2 0 0 0 2 2h4.159" />
+                          <path d="M18 18m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+                          <path d="M18 14.5v1.5" />
+                          <path d="M18 20v1.5" />
+                          <path d="M21.032 16.25l-1.299 .75" />
+                          <path d="M16.27 19l-1.3 .75" />
+                          <path d="M14.97 16.25l1.3 .75" />
+                          <path d="M19.733 19l1.3 .75" />
+                        </svg>
                       </label>
                       <ul
                         tabIndex={0}
-                        className="menu dropdown-content rounded-box z-[1] mt-4 w-52 bg-secondary p-2 shadow"
+                        className="menu dropdown-content rounded-box z-[1] mt-4 w-52 bg-bgback p-2 shadow"
                       >
                         <li>
-                          <NavLink to="/dashboard">
+                          <NavLink
+                            className="active:bg-primary"
+                            to="/dashboard"
+                          >
                             {" "}
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -151,9 +180,54 @@ export default function Header({ cartItemCount }) {
                         </li>
                         <li>
                           {usuario.token ? (
-                            <button onClick={logout}>Logout</button>
+                            <button onClick={logout}>
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-logout"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="#ffffff"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path
+                                  stroke="none"
+                                  d="M0 0h24v24H0z"
+                                  fill="none"
+                                />
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                <path d="M9 12h12l-3 -3" />
+                                <path d="M18 15l3 -3" />
+                              </svg>{" "}
+                              Logout
+                            </button>
                           ) : (
-                            <NavLink to="/login">Login</NavLink>
+                            <NavLink to="/login">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="icon icon-tabler icon-tabler-login"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                strokeWidth={1.5}
+                                stroke="#ffffff"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                              >
+                                <path
+                                  stroke="none"
+                                  d="M0 0h24v24H0z"
+                                  fill="none"
+                                />
+                                <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                <path d="M20 12h-13l3 -3m0 6l-3 -3" />
+                              </svg>{" "}
+                              Login
+                            </NavLink>
                           )}
                         </li>
                       </ul>

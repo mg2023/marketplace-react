@@ -82,7 +82,14 @@ const ChatContent = () => {
 
   return (
     <div className="container mx-auto">
-      <h1 className="mb-12 text-center text-4xl font-bold">Comentarios</h1>
+      <div className="py-12 text-center uppercase">
+        <h1 className="text-3xl font-extrabold text-text sm:text-5xl">
+          Tickets de Soporte
+          <strong className="mt-2 block font-extrabold text-primary">
+            consultas y solicitudes de los usuarios
+          </strong>
+        </h1>
+      </div>
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
         {comments.map((comment) => (
           <div

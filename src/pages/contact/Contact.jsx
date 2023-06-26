@@ -129,12 +129,17 @@ const Contact = () => {
 
   return (
     <div className="min-h-400px mb-24 mt-12 flex flex-col items-center pt-4">
-      <h1 className="mb-8 text-center text-xl font-black xl:text-4xl">
-        CONTACTO
-      </h1>
-      <h2 className="text-md text-center xl:text-xl">
-        ¡Nos encantaría saber de ti!
-      </h2>
+      <div className=" p-12 text-center uppercase">
+        <h1 className="text-xl font-extrabold text-text sm:text-2xl">
+          Generar nuevo ticket de soporte
+          <strong className="text-md mt-2 block font-extrabold text-primary">
+            ¡Tu satisfacción es nuestra prioridad! Si tienes alguna pregunta,
+            problema o solicitud de ayuda, por favor completa el siguiente
+            formulario para generar un nuevo ticket de soporte. Nuestro equipo
+            estará encantado de asistirte.
+          </strong>
+        </h1>
+      </div>
       {renderContent()}
     </div>
   );

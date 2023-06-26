@@ -12,7 +12,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Contact from "./pages/contact/Contact";
 import Team from "./pages/team/Team";
-import DashBoard from "./pages/dashBoard/DashBoard";
+import DashBoard from "./pages/dashBoard/DashBoardV2";
 import Context from "./context/Context";
 import AuthProvider from "./middleware/AuthProvider";
 import Category from "./pages/Category/Category";
@@ -93,7 +93,7 @@ export default function App() {
                   element={<Register />}
                 />
                 <Route
-                  path="/contact"
+                  path="/support"
                   element={<Contact />}
                 />
                 <Route
