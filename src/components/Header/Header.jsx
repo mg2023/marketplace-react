@@ -10,21 +10,23 @@ export default function Header({ cartItemCount }) {
   return (
     <nav
       data-theme="synthwave"
-      className="z-900  top-0 w-full bg-bgfront shadow"
+      className="sticky  top-0 z-50 w-full bg-bgfront p-4 shadow md:p-0"
     >
       <div className="mx-auto justify-between px-4 md:flex md:items-center md:px-8 lg:max-w-7xl">
-        <div>
-          <div className="flex items-center justify-between py-3 md:block md:py-5">
-            <NavLink to="/">
-              <img
-                className="max-w-[35%]"
-                src="https://firebasestorage.googleapis.com/v0/b/proyecto-final-desafio-latam.appspot.com/o/logo%2Fgame_over2.png?alt=media&token=208cfd28-9fb5-4ed3-928f-efa8a0808a4a"
-                alt="Logo Game Over"
-              />
-            </NavLink>
-            <div className="md:hidden">
+        <div className="w-3/6 md:w-1/6">
+          <div className="relative flex items-center justify-between py-3 md:block md:py-5">
+            <div className="w-full">
+              <NavLink to="/">
+                <img
+                  className="w-full"
+                  src="https://firebasestorage.googleapis.com/v0/b/proyecto-final-desafio-latam.appspot.com/o/logo%2Fgame_over2.png?alt=media&token=208cfd28-9fb5-4ed3-928f-efa8a0808a4a"
+                  alt="Logo Game Over"
+                />
+              </NavLink>
+            </div>
+            <div className="absolute left-72 md:hidden">
               <button
-                className="rounded-md p-2 text-primary outline-none focus:border focus:border-primary"
+                className=" rounded-md p-2 text-primary outline-none focus:border focus:border-primary"
                 onClick={() => setNavbar(!navbar)}
               >
                 {navbar ? (
@@ -60,7 +62,7 @@ export default function Header({ cartItemCount }) {
             </div>
           </div>
         </div>
-        <div>
+        <div className="w-5/6">
           <div
             className={`mt-8 flex-1 justify-self-center pb-12 md:mt-0 md:block md:pb-0 ${
               navbar ? "block" : "hidden"
@@ -116,7 +118,7 @@ export default function Header({ cartItemCount }) {
               </li>*/}
 
               <li>
-                <div className="flex flex-1 justify-end px-2">
+                <div className="flex flex-1 justify-center px-2 md:justify-end">
                   <div className="flex items-stretch">
                     <div className="dropdown dropdown-end">
                       <label

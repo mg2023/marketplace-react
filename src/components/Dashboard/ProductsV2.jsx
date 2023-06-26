@@ -437,6 +437,35 @@ const Products = () => {
         {" "}
         <hr className="text-bgFront my-12 w-full px-24" />
       </div>
+      <div className="flex justify-center">
+        <p className="mb-12 block md:hidden">
+          Desliza hacia los lados <br /> para ver la tabla completa
+        </p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="icon icon-tabler icon-tabler-arrows-diff md:hidden"
+          width="48"
+          height="48"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="#7bc62d"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path
+            stroke="none"
+            d="M0 0h24v24H0z"
+            fill="none"
+          />
+          <path d="M11 16h10" />
+          <path d="M11 16l4 4" />
+          <path d="M11 16l4 -4" />
+          <path d="M13 8h-10" />
+          <path d="M13 8l-4 4" />
+          <path d="M13 8l-4 -4" />
+        </svg>
+      </div>
       <div className="overflow-x-auto px-12">
         <div>
           <input
