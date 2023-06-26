@@ -109,13 +109,16 @@ const Products = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formValues.id) {
-      fetch(`${API_URL}/${formValues.id}`, {
+    // Actualiza el valor de stars_quantity a null antes de enviar los datos
+    const updatedFormValues = { ...formValues, stars_quantity: null };
+
+    if (updatedFormValues.id) {
+      fetch(`${API_URL}/${updatedFormValues.id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(updatedFormValues),
       })
         .then((response) => {
           if (response.ok) {
@@ -136,7 +139,7 @@ const Products = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formValues),
+        body: JSON.stringify(updatedFormValues),
       })
         .then((response) => {
           if (response.ok) {
@@ -283,8 +286,8 @@ const Products = () => {
           />
         </div>
 
-        <div className="col-span-3 flex justify-center gap-4 sm:col-span-1">
-          <div className="w-1/3">
+        <div className="col-span-2 flex justify-center gap-4 sm:col-span-1">
+          <div className="hidden w-1/3">
             <label
               htmlFor="stars_quantity"
               className="mb-2 block text-sm font-medium"
@@ -300,7 +303,7 @@ const Products = () => {
               className="focus:shadow-outline w-full border-2 border-solid p-2 leading-tight shadow focus:outline-none"
             />
           </div>
-          <div className="w-1/3">
+          <div className="w-1/2">
             <label className="block text-sm font-medium ">Nuevo</label>
 
             <input
@@ -317,7 +320,7 @@ const Products = () => {
               }
             />
           </div>
-          <div className="w-1/3">
+          <div className="w-1/2">
             <label className="block text-sm font-medium text-gray-700">
               Off %
             </label>
