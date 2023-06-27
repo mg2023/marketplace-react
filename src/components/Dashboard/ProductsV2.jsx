@@ -53,9 +53,14 @@ const Products = () => {
   };
 
   useEffect(() => {
-    const filtered = products.filter((product) =>
-      product.product_name.toLowerCase().includes(filter.toLowerCase())
-    );
+    const filtered = products.filter((product) => {
+      if (product.product_name) {
+        return product.product_name
+          .toLowerCase()
+          .includes(filter.toLowerCase());
+      }
+      return false;
+    });
     setFilteredProducts(filtered);
   }, [products, filter]);
 
